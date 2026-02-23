@@ -116,7 +116,88 @@ This indicates:
 Bandwidth ≈ 43.33 GHz
 Since there is no capacitor, the response remains flat until high frequency.
 Only high-frequency limitation is visible.
+
+# AC Analysis(with capacitor):
+<img width="1912" height="416" alt="image" src="https://github.com/user-attachments/assets/368232b1-f78c-4c82-b282-10e16f39b085" />
+<img width="1021" height="637" alt="image" src="https://github.com/user-attachments/assets/1ce58868-9ce0-446e-abbf-02cd153b08b0" />
+
+
+* **C=1.5pF**
+
+* **Av=9.4-3=6.4dB**
+
+* **Bandwidth=24.27MHz**
+
+  The graph shows Gain (dB) vs Frequency.
   
+The mid-band gain is 9.43 (≈ 6.4 dB).
+The gain remains almost constant at low and mid frequencies.
+Due to the added capacitor (C = 1.5 pF), the gain starts decreasing at a much lower frequency.
+The bandwidth is 24.27 MHz, which is significantly reduced compared to the case without capacitor.
+
+Adding the capacitor reduces the bandwidth and causes earlier high-frequency roll-off, while the mid-band gain remains approximately the same
+
+# Procedure:
+1.create the Circuit
+Open LTspice and start a new schematic. Save the file in a suitable folder with an appropriate name.
+
+2️. Place Required Components
+Insert the necessary components into the schematic:
+NMOS transistor (180 nm model)
+DC voltage source for power supply
+AC voltage source for input
+Resistor
+Ground terminal (mandatory)
+Connect the circuit properly according to the required configuration.
+
+3️. Assign Component Values
+Set the values for each element:
+DC supply voltage
+AC input signal (amplitude and frequency)
+Resistor value
+Ensure correct MOSFET model is selected and connected (Drain, Gate, Source properly wired)
+
+4️. Set Up Simulation Commands
+Open the simulation settings and add:
+DC operating point analysis to find the bias conditions
+AC analysis to obtain gain and frequency response
+Transient analysis to observe time-domain output waveform
+Enter the required parameters for each type of analysis.
+
+5️. Run the Simulation
+Click the Run button to execute the simulation.
+Observe the waveform window for:
+DC operating values
+Gain plot versus frequency
+Output waveform versus time
+
+6️. Analyze the Results
+From the results:
+Verify MOSFET operating region using VGS, VDS, and ID.
+Determine voltage gain from AC plot.
+Identify cutoff frequency and bandwidth.
+Confirm amplification from transient waveform.
+
+# Inference:
+
+From the DC, AC, transfer, and transient analyses of the NMOS amplifier, the following conclusions are obtained:
+
+1️. DC Analysis:
+The MOSFET is properly biased and operates in the required region (saturation region). The Q-point is stable, confirming correct biasing of the amplifier.
+
+2️. Transfer Characteristics:
+The transfer curve shows a negative slope, indicating that the output decreases as the input increases. This confirms that the circuit behaves as an inverting amplifier.
+
+3️.AC Analysis:
+The amplifier provides a constant mid-band gain (around 9.43 or 6.4 dB). The gain decreases after the cutoff frequency, determining the bandwidth.
+When a capacitor is added, the bandwidth reduces due to increased high-frequency roll-off.
+
+4️. Transient Analysis:
+The output waveform is amplified and inverted compared to the input signal, confirming proper amplification action.
+
+ Overall Inference:
+The designed NMOS amplifier operates correctly in saturation region, provides voltage amplification with negative gain, and exhibits proper frequency response characteristics. The presence of capacitance significantly affects the bandwidth while keeping mid-band gain nearly constant.
+
 
 
 
