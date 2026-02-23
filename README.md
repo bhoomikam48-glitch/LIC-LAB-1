@@ -46,9 +46,77 @@ From this simulation Vout=1.23,Vin=0.9v and Id=153µA the load line equation is 
 | 1900        | 1750       | 22.57   |
 | 1900        | 1750       | 25.20   |
 
+To check the mosfet is in saturation region Vds=Vd-Vs ;1-0=1V
 
+since Vds>Vov
 
+It is in saturation region.The Q point is 1V,200µA
 
+ # Transfer Analysis
+
+![WhatsApp Image 2026-02-23 at 19 05 50](https://github.com/user-attachments/assets/c95bd877-443f-44c0-90ad-19a73f124e42) 
+
+The curve is downward sloping.
+As Vin increases, Vout decreases.
+The relationship is almost linear in a certain region.
+After a point, the curve becomes flat → indicating saturation.
+
+# Interpretation:
+Since the slope is negative, the circuit has
+ * **Negative gain**
+ * **Output is inverted with respect to input**
+The flat region indicates the device is entering saturation region, where further increase in input does not significantly change output.
+The mentioned Q-point (1V, 200µA) represents the DC operating point of the device.
+
+# Transient Analysis:
+
+<img width="1919" height="870" alt="image" src="https://github.com/user-attachments/assets/cd904cae-aeee-4734-ac5c-6f55d08703b5" />
+From graph,
+
+*Av​=ΔVin/​ΔVout
+
+*Av=0.057/0.0186=3.06
+
+*Gain(dB) = 20log10(Av)=9.714dB​​​
+
+*gm= 2Id / Vov=7.49×10^−4 S
+
+*Av=gm×RD
+
+*Av=7.49×10^−4×5×10^3=3.74
+
+*Gain(dB) = 20log10(Av)=11.36
+
+ # AC Analysis(without capacitor):
+
+<img width="1918" height="423" alt="image" src="https://github.com/user-attachments/assets/6499d784-5ed5-4850-85f6-8a162f719a37" />
+
+* **Av=9.4-3=6.4dB**
+
+* **Cutoff frequency=42.33GHz**
+
+* **Bandwidth=42.33GHz**
+
+# Interpretation of the Graph
+ 1. Nature of the Graph
+X-axis → Frequency (Hz)
+Y-axis → Gain (dB)
+The curve is almost flat at low and mid frequencies
+It drops sharply at higher frequencies
+ 2. Voltage Gain:
+So the amplifier provides:
+ Constant mid-band gain of about 9.43 (≈ 6.4 dB)
+ 3. Cutoff Frequency
+Cutoff frequency ≈ 42.33 GHz
+At this frequency, gain reduces by 3 dB
+After this point, gain decreases rapidly
+This indicates:
+ High-frequency roll-off
+ 4. Bandwidth
+Bandwidth ≈ 43.33 GHz
+Since there is no capacitor, the response remains flat until high frequency.
+Only high-frequency limitation is visible.
+  
 
 
 
