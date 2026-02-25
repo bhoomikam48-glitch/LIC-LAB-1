@@ -1,7 +1,7 @@
 # LIC-LAB-1
 # Experiment-1 Analysis of CS amplifier using 180nm technology
 # Aim:
-Design cs ampifier using nmosfet in tsmc 180nm using vdd=2V , P<=1.5mW,capacitor = 1.5pF
+Design cs ampifier using nmosfet in tsmc 180nm using vdd=2V , P<=1.5mW,capacitor = 1pF
 # Theory:
 The Common Source (CS) amplifier is one of the most widely used MOSFET amplifier configurations. In this circuit, the source terminal is common to both the input and the output, typically connected to ground. The input signal is applied between the gate and source (VGS), and the output is taken from the drain terminal.
 # Principle of Operation
