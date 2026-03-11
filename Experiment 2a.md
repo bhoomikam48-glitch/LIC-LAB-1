@@ -256,7 +256,7 @@ Given data: VDD=2V , P<=1.5mW , Vov=0.25V , Vthn=0.36V , Vthp=0.39V , CL=1pF , L
 
 
 
-# Transfer analysis:
+# Transfer analysis: (DC Sweep) 
 
 
 
@@ -286,17 +286,142 @@ Transient analysis in a Common Source (CS) amplifier studies how the circuit res
 
 input waveform:
 
-<img width="1918" height="857" alt="image" src="https://github.com/user-attachments/assets/37794d61-942f-4573-911e-0d812e8c69ea" />
+<img width="1918" height="852" alt="image" src="https://github.com/user-attachments/assets/a5a02434-f87e-4b09-9354-4aaa24416635" />
 
 
 output waveform:
 
-<img width="1918" height="843" alt="image" src="https://github.com/user-attachments/assets/3eaf8306-7d32-49c7-9ed9-3cebde7d9a70" />
+<img width="1915" height="848" alt="image" src="https://github.com/user-attachments/assets/f75b9656-405e-4ca4-b431-91e7fe196846" />
 
 
+
+##  Transient Analysis Results
+
+The transient simulation was performed with a $1kHz$ sinusoidal input signal .
+
+### Waveform Observations
+| Parameter | Input Waveform ($V_{in}$) | Output Waveform ($V_{out}$) |
+| :--- | :--- | :--- |
+| **Peak-to-Peak** | $\ 19.55mV$ | $\ 0.22V$ |
+| **Phase Shift** | $0^\circ$ | $180^\circ$ |
+
+
+### Gain Verification
+The transient gain is calculated as the ratio of the output peak-to-peak voltage to the input peak-to-peak voltage:
+
+$$A_{v(tran)} = \frac{V_{out(p-p)}}{V_{in(p-p)}}$$
+
+Using values from the simulation plots:
+* **$V_{in(p-p)} \ 809.91mV - 790.36mV = 19.55mV$**
+* **$V_{out(p-p)} \ 1.49V - 1.27V = 0.22V$**
+
+$$A_v = \frac{0.22V}{19.55mV} = 11.25 \text{ V/V}$$
+
+
+
+  Av(dB) = 20 log(11.25) = 21.02dB
+
+
+
+* The clean, undistorted sine wave confirms that the circuit is successfully biased in the **Saturation (Active) Region**.
+
+
+
+
+* Theoretical gain:
+
+  gm = 2ID / VOV
+  
+  gm = (2 × 200 × 10⁻⁶) / 0.25
+ 
+  gm = 1.6 × 10⁻³ S
  
 
-     
+  ro = 1 / (λ ID)
+ 
+  ro = 1 / (0.1 × 200 × 10⁻⁶)
+ 
+  ro = 50 kΩ
 
-   
+
+  (ro1 || ro2) = 25 kΩ
+ 
+
+  Av = - gm (ro1 || ro2) / (1 + gm RS) Av = - (1.6 × 10⁻³ × 25 × 10³) / (1 + 1.6 × 10⁻³ × 1 × 10³) Av = -40 / 2.6
+ 
+  Av = -15.38 V/V
+
+
+  Av(dB) = 20 log(15.38)
+ 
+  Av(dB) = 23.74 dB
+
+
+  ##  Gain Analysis: Theoretical vs. Practical
+
+The amplifier was designed for a theoretical gain of **23.74 dB**. Upon simulation, the practical gain was measured at **21.02 dB**. This deviation is common in 180nm CMOS design due to second-order physical effects not captured in simplified manual calculations.
+
+### Factors Contributing to Gain Loss
+
+| Factor | Description | Impact on Gain |
+| :--- | :--- | :--- |
+| **Body Effect** | Source degeneration raises $V_{SB} > 0$, increasing $V_{th}$. | Reduces $g_m$ (transconductance). |
+| **Channel Length Modulation** | Finite output resistance ($r_o$) of the MOSFETs. | Shunts the load, reducing total resistance. |
+| **Non-Ideal Transistors** | Manual models assume ideal current sources. | Actual devices have parasitic effects in `tsmc018.lib`. |
+
+
+
+
+ # AC Analysis:
+
+ ##  Frequency Response Analysis:
+
+The AC analysis was performed across a frequency range of $0.1Hz$ to $100GHz$. The frequency response demonstrates the bandwidth limits imposed by parasitic capacitances in the 180nm CMOS process.
+
+<img width="1918" height="852" alt="image" src="https://github.com/user-attachments/assets/f54cc4d4-8c48-4ab4-b999-293e55482b97" />
+
+
+Bandwidth is measured at: Av(mid) − 3 dB = 21.02 − 3
+= 18.02 dB fH (upper cutoff frequency) ≈ 212.875 MHz
+fL (lower cutoff frequency) ≈ 0 Hz
+
+Therefore: Bandwidth (BW) ≈ 212.875 MHz.
+
+Unity gain Bandwidth:
+
+
+<img width="1917" height="853" alt="image" src="https://github.com/user-attachments/assets/4d750859-f6f2-4383-a1b3-9cf5e9eea1ab" />
+
+
+
+From AC analysis plot At frequency ≈ 3.00 GHz
+
+Magnitude ≈ 5.70mdB at 0 dB
+
+Therefore, UGB ≈ 3.00 GHz
+
+UGB ≈ Av(midband) × Bandwidth ( Theoretical Gain ≈ 15.384 dB)
+
+Av ≈ 15.384 * 212.875 MHz
+Now, UGB = Av × Bandwidth
+UGB = 15.384 × 212.87 MHz
+UGB ≈ 3.2 GHz
+
+* From simulation analysis: UGB ≈ 3.00 GHz
+  
+* From Gain–Bandwidth product: UGB ≈ 3.2 GHz
+
+
+* Thus Gain bandwidth product , practically and theoretically are verified and validated.
+  
+* The value 3 and 3.2 are very close .
+
+
+# Conclusion:
+ 
+ The design successfully balances gain and linearity.
+ 
+ The Active Load provides high-impedance gain, while the Source Degeneration ensures stability and a broader linear operating range.
+ 
+ The experiment demonstrates that for high-performance analog design, second-order effects like body-biasing and output impedance are essential considerations for  accurate performance prediction.
  
