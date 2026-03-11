@@ -1,6 +1,8 @@
+# LIC LAB -2 
+
 # Common Source Amplifier Configurations
 
-# a) Source Degenerated Common Source Amplifier.
+#  Experiment a) :  Source Degenerated Common Source Amplifier.
 
 # AIM: 
  Design of PMOS active load configuration in tsmc018lib using LTspice.
