@@ -8,10 +8,18 @@
 <img width="1085" height="832" alt="image" src="https://github.com/user-attachments/assets/47ac7ce2-b62a-4afc-a04b-28355c51c25a" />
 
 
+Given data: 
 
-Given data: VDD=2V , P<=1.5mW , Vov=0.25V , Vthn=0.36V , Vthp=0.39V , CL=1pF , Ln=Lp=180nm .
-
-
+| Parameter | Symbol | Value |
+| :--- | :--- | :--- |
+| Supply Voltage | $V_{DD}$ | 2.0 V |
+| Target Drain Current | $I_D$ | $200\text{ }\mu\text{A}$ |
+| Power Consumption | $P_{cons}$ |  $\leq 1.5\text{mW}$) |
+| Overdrive Voltage | $V_{OV}$ | 0.25 V |
+| Load Capacitance | $C_L$ | 1.0 pF |
+| Technology Node | $L$ | 180 nm (TSMC 0.18um) |
+| Threshold Voltage | $Vthn$ | 0.36V (NMOS) |
+| Threshold Voltage | $Vthp$ | 0.39V (PMOS) |
 
 In this configuration:
 
@@ -39,22 +47,135 @@ this boost in $R_{out}$ leads to a significantly higher voltage gain without nee
 * Design calculations:
 
 
- power verification:
+ Power verification:
 
  Let ID = 200 µA
 
- P = VDD*ID
+  $$P = V_{DD} \times I_D = 2\text{V} \times 200\mu\text{A} = 0.4\text{mW}$$
 
- Power = 2*200 µA = 0.4mW which is <= 1.5mW.
+  Verification: $0.4\text{mW} \leq 1.5\text{mW}$ (Constraint satisfied).
 
- Thus power is verified.
 
- Also,
- Vout = VDD/2 + VS1
+  Also,
  
- Vout = VDD/2 + 0.3
+  Vout = VDD/2 
+ 
+  Vout = 2/2
 
- Vout =1+0.3 = 1.3V.
+  Vout = 1 = 1V
+
+
+  For M3 Transistor:
+
+​
+  VGS3 = VOV + VTH 
+  
+  VGS3  =   0.25 + 0.36
+  
+  VGS3  = 0.61V
+	​
+
+ Assume , VS1 = 0.3V 
+
+ VDS3 = VS1 = 0.3V ( VS3 = 0)
 
  
+
+ For M3 to be SATURATION,
+
+  VGS3 >= VTH
+
+  0.61 V >= 0.36 V
+
+  and VDS3 >= VOV
+
+ VDS = 0.3 V from the simulation
+
+ Hence, 0.3 >= 0.25
+
+ Therefore both the conditions are satisfied. 
+
+ Therefore M3 is operating in SATURATION region.
+	
+
+
+   For M1 Transistor :
+
+   VGS3 = VOV + VTH 
+  
+   VGS3  =   0.25 + 0.36
+  
+   VGS3  = 0.61V
+
+
+  VG1 = VS1 + VGS1
+ 
+  VG1 = 0.3 + O.61
+
+  VG1 = 0.91V
+
+
+   For M1 to be SATURATION,
+
+  VGS1 >= VTH
+
+  0.91 V >= 0.36 V
+
+  and VDS1 >= VOV
+
+  VDS1 = VOUT - VS1
+
+  VDS1 = 1 - 0.3
+
+  VDS1 = 0.7V
+
+  Therefore , VDS1  >= VOV.
+  
+   0.7 >= 0.25 
+  
+ Therefore both the conditions are satisfied. 
+
+ Therefore M1 is operating in SATURATION region.
+	
+
+  For M2 Transistor :(PMOS)
+ 
+ VSG2 = VOV + |VTH| 
+ 
+  VSG2    = 0.25 + 0.39 
+   
+   VSG2   = 0.64 V
+
+
+  VSG2 = VS2 - VG2
+
+  0.64  =  2 - VG2
+
+   VG2 = 1.36V
+
+
+   VSD2 = VDD - VOUT 
+   
+   VSD2   = 2 - 1 
+    
+   VSD2 = 1
+
+
+   For M2 to be SATURATION,
+
+  VSG2 >= VTH
+
+  1.36 V >= 0.39 V
+
+  and VSD2 >= VOV
+
+  Therefore , VSD2 >= VOV.
+  
+   1 >= 0.25 
+  
+ Therefore both the conditions are satisfied. 
+
+ Therefore M2 is operating in SATURATION region.
+	
+    
   
