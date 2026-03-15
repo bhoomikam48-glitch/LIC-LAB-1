@@ -515,10 +515,10 @@ output waveform:
 
 | Parameter | Symbol | Value |
 | :--- | :--- | :--- |
-| Input Swing (Peak-to-Peak) | $V_{pp,in}$ | 20 mV |
-| Output Swing (Peak-to-Peak) | $V_{pp,out}$ | 70 mV |
-| **Voltage Gain (Magnitude)** | **$|A_v|$** | **3.5 V/V** |
-| Voltage Gain (dB) | $A_{v,dB}$ | 10.88 dB |
+| Input Swing (Peak-to-Peak) | $V_{pp,in}$ | 19.33 mV |
+| Output Swing (Peak-to-Peak) | $V_{pp,out}$ | 0.066V |
+| **Voltage Gain (Magnitude)** | ${A_v}$ | 3.41 V/V |
+| Voltage Gain (dB) | $A_{v,dB}$ | 10.65 dB |
 | Phase Shift | $\phi$ | 180° (Inverting) |
 | Frequency | $f$ | 1 kHz |
 
@@ -526,7 +526,9 @@ output waveform:
 
 * Input Waveform ($V_{in}$):
 
-Maximum ($V_{in,max}$): $919.63\text{mV}$ Minimum ($V_{in,min}$): $900.3\text{mV}$
+Maximum ($V_{in,max}$): $919.63\text{mV}$
+
+Minimum ($V_{in,min}$): $900.3\text{mV}$
 
 Peak-to-Peak ($V_{pp,in}$): $919.63\text{mV} - 900.3\text{mV} = 19.33\text{mV}$
 
@@ -559,5 +561,87 @@ $$|A_v| = \frac{\text{0.066V}}{19.33\text{mV}} = 3.41\text{ V/V}$$
 In decibels (dB):
 
 $$A_v(dB) = 20 \log_{10}(3.41) \approx 10.65\text{ dB}$$
+
+
+# Theoretical gain :
+
+
+gm1 = 2ID / VOV
+
+gm1= (2 × 200 × 10⁻⁶) / 0.25
+
+gm1 = 1.6 × 10⁻³ S
+
+ro1 = 1 / (λ ID)  ( λn = 0.1)
+
+ro1 = 1 / (0.1 × 200 × 10⁻⁶)
+
+ro1 = 50 kΩ
+
+similarly, ro2 = 50 kΩ . 
+
+(ro1 || ro2) = 25 kΩ (NMOS)
+
+
+PMOS:
+
+
+  ro3 = 1 / (λ ID)    ( λp = 0.12)
+
+   ro3  =  1 / (0.12 × 200×10⁻⁶) =	41.6 kΩ
+
+   
+Effective resistance:
+
+ro_eff = (ro1 || ro3)
+
+ro_eff = (50k × 41.6k) / (50k + 41.6k)
+
+ro_eff ≈ 22.7 kΩ
+
+
+   
+Av = − gm1 × ro_eff / (1 + gm1 ro2)
+
+
+ Av = − (1.6×10⁻³ × 22.7×10³) / (1 + 1.6×10⁻³ × 50×10³) 
+ 
+  Av ≈ − 0.448 V/V
+
+
+Av(dB) = 20 log(Av) 
+
+ Av(dB)   = 20 log(0.448)
+ 
+ Av(dB)    = 6.97 dB
+
+
+ ### Gain Discrepancy Analysis
+
+| Metric | Theoretical Value | Simulated Value | Difference |
+| :--- | :--- | :--- | :--- |
+| **Voltage Gain (V/V)** | 0.448 V/V | 3.41 V/V | +2.96 V/V |
+| **Voltage Gain (dB)** | 6.97 dB | 10.65 dB | +3.68 dB |
+
+**Inference:**
+
+The discrepancy is primarily due to the simplified estimation of $\lambda$ in theoretical hand calculations.
+
+The simulated gain is higher because the actual output resistance ($r_o$) of the transistors at the specific DC
+
+operating point is higher than the conservative value used in the theoretical model ($\lambda=0.1$).
+
+
+
+# AC Analysis:
+
+
+# Frequency Response Analysis:
+
+
+The AC analysis was performed across a frequency range of 0.1 HZ to 100GHZ.The frequency response demonstrates the bandwidth limits imposed by parasitic capacitances in the 180nm CMOS process.
+
+
+
 
 
