@@ -420,4 +420,14 @@ By rearranging, ID = (1/2) μn Cox (W/L) (VOV)²
 W = 11.8 µm ,  for ID= 200µA
 
 
+<img width="1860" height="851" alt="Image" src="https://github.com/user-attachments/assets/4a56d35e-2242-4ca8-a475-c8b9abb1e88c" />
 
+
+With these calculated width , we get ID=63.5µA , VOUT=1.46V
+
+Taking the ratio of the current i.e. = 200 / 63.5 = 3.14 (assumed current ID = 200 , simulated ID = 63.5).
+
+
+Wn = 5 * 3.14 = 15.7 µm , Wp = 11.8 * 3.14 = 37.05µm , taking reference as 15.7 µm , 37.05µm start increasing or
+
+decreasing the width values to get ID = 200 µA , VOUT = 1.0V
