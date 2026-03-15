@@ -431,3 +431,62 @@ Taking the ratio of the current i.e. = 200 / 63.5 = 3.14 (assumed current ID = 2
 Wn = 5 * 3.14 = 15.7 µm , Wp = 11.8 * 3.14 = 37.05µm , taking reference as 15.7 µm , 37.05µm start increasing or
 
 decreasing the width values to get ID = 200 µA , VOUT = 1.0V
+
+
+
+<img width="1756" height="845" alt="Image" src="https://github.com/user-attachments/assets/6db05518-0583-4a34-8442-4a9f1ea95488" />
+
+
+* Final Width values : Wn = 18.5µm (for M1) ,   Wn = 16.6µm (for M3) ,   Wp = 34.6µm (for PMOS).
+
+* After tuning width values we get  ID=200µA , VOUT=1.0V which matches with theoretical and simulated analysis.
+
+### Comparison of Initial vs. Final Design Parameters
+
+| Parameter | Symbol | Initial Design | Final Optimized Design |
+| :--- | :--- | :--- | :--- |
+| **Drain Current** | $I_D$ | $63.5\text{ }\mu\text{A}$ | **$200\text{ }\mu\text{A}$** |
+| **M1 Width (Input)** | $W_{n1}$ | $5\text{ }\mu\text{m}$ | **$18.5\text{ }\mu\text{m}$** |
+| **M3 Width (Tail)** | $W_{n3}$ | $5\text{ }\mu\text{m}$ | **$16.6\text{ }\mu\text{m}$** |
+| **M4 Width (PMOS)** | $W_{p}$ | $11.8\text{ }\mu\text{m}$ | **$34.6\text{ }\mu\text{m}$** |
+| **Channel Length** | $L$ | $180\text{ }\text{nm}$ | $180\text{ }\text{nm}$ |
+
+
+
+# Transfer Analysis : (DC Sweep)
+
+
+
+
+
+
+
+DC Sweep Analysis (Voltage Transfer Characteristics)
+
+
+The DC sweep plot reveals three distinct regions of operation for the cascode amplifier:
+
+* Cut-off Region ($V_{in} < V_{thn}$):
+
+When $V_{in}$ is below the threshold voltage (approx. $0.36\text{V}$), the input transistor $M_1$ is OFF.No current flows through the branch. The PMOS load pulls $V_{out}$ up to $V_{DD}$ ($2\text{V}$).
+
+
+* Saturation (High Gain Region):
+
+As $V_{in}$ increases beyond $V_{thn}$, the transistors enter the saturation region.This is the steep linear portion of the blue curve (centered around $V_{in} \approx 0.9\text{V}$).In this region, the amplifier provides maximum gain. Small changes in $V_{in}$ result in large swings in $V_{out}$.
+
+* Triode/Linear Region:
+
+As $V_{in}$ continues to increase (above $1.1\text{V}$), $V_{out}$ drops so low that the NMOS transistors enter the triode region.The output flattens out at the "lower rail," which is the sum of the $V_{DS,sat}$ of the bottom transistors.
+
+
+
+### DC Sweep Analysis Summary (VTC)
+
+| Input Voltage ($V_{in}$) | Output Voltage ($V_{out}$) | Region of Operation | Status |
+| :--- | :--- | :--- | :--- |
+| 0.0 V to 0.4 V | ~ 2.0 V | Cut-off | Output at VDD |
+| 0.6 V | ~ 1.9 V | Transition | M1 starts conducting |
+| **0.91 V (Bias)** | **~ 1.1 V** | **Saturation** | **Active Gain Region** |
+| 1.0 V | ~ 0.7 V | High Swing | Approaching Triode |
+| 1.2 V to 2.0 V | ~ 0.4 V | Triode / Saturation | Output Clipping (Low) |
