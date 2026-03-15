@@ -456,7 +456,7 @@ decreasing the width values to get ID = 200 µA , VOUT = 1.0V
 # Transfer Analysis : (DC Sweep)
 
 
-
+<img width="1918" height="855" alt="Image" src="https://github.com/user-attachments/assets/e99cc4d4-4abc-46cd-91f1-633cdb31bac2" />
 
 
 
@@ -490,3 +490,15 @@ As $V_{in}$ continues to increase (above $1.1\text{V}$), $V_{out}$ drops so low 
 | **0.91 V (Bias)** | **~ 1.1 V** | **Saturation** | **Active Gain Region** |
 | 1.0 V | ~ 0.7 V | High Swing | Approaching Triode |
 | 1.2 V to 2.0 V | ~ 0.4 V | Triode / Saturation | Output Clipping (Low) |
+
+
+
+
+# Transient Analysis:
+
+
+Transient analysis in a Common Source (CS) amplifier studies how the circuit responds to time-varying signals, especially during switching (turn-on / turn-off) or sudden changes in input.
+
+
+
+
