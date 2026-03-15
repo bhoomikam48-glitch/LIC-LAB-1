@@ -54,3 +54,7 @@ Given data:
 * Design calculation:
 
   
+Power verification:
+
+Let ID = 200 µA
+
