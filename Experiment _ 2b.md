@@ -499,6 +499,65 @@ As $V_{in}$ continues to increase (above $1.1\text{V}$), $V_{out}$ drops so low 
 
 Transient analysis in a Common Source (CS) amplifier studies how the circuit responds to time-varying signals, especially during switching (turn-on / turn-off) or sudden changes in input.
 
+input waveform:
 
+<img width="1917" height="851" alt="Image" src="https://github.com/user-attachments/assets/53b720da-3642-4794-9b44-c4139ef3b32f" />
+
+
+
+output waveform:
+
+<img width="1918" height="852" alt="Image" src="https://github.com/user-attachments/assets/99d4468c-4c52-4ee9-b35b-3fe7ec09a49a" />
+
+
+
+### Transient Analysis Results
+
+| Parameter | Symbol | Value |
+| :--- | :--- | :--- |
+| Input Swing (Peak-to-Peak) | $V_{pp,in}$ | 20 mV |
+| Output Swing (Peak-to-Peak) | $V_{pp,out}$ | 70 mV |
+| **Voltage Gain (Magnitude)** | **$|A_v|$** | **3.5 V/V** |
+| Voltage Gain (dB) | $A_{v,dB}$ | 10.88 dB |
+| Phase Shift | $\phi$ | 180° (Inverting) |
+| Frequency | $f$ | 1 kHz |
+
+
+
+* Input Waveform ($V_{in}$):
+
+Maximum ($V_{in,max}$): $919.63\text{mV}$ Minimum ($V_{in,min}$): $900.3\text{mV}$
+
+Peak-to-Peak ($V_{pp,in}$): $919.63\text{mV} - 900.3\text{mV} = 19.33\text{mV}$
+
+
+* Output Waveform ($V_{out}$):
+
+Maximum ($V_{out,max}$): $\approx 1.04\text{V}$
+
+Minimum ($V_{out,min}$): $\approx 0.973\text{V}$
+
+Peak-to-Peak ($V_{pp,out}$): $1.043\text{V} - 973.3\text{mV} = 0.066\text{V}$
+
+
+Phase: Note that the output is 180° out of phase with the input (when $V_{in}$ goes up, $V_{out}$ goes down), which is characteristic of a Common-Source based amplifier.
+
+
+* Voltage Gain ($A_v$) Calculation
+
+The magnitude of the voltage gain is defined as:
+
+
+$$|A_v| = \frac{V_{pp,out}}{V_{pp,in}}$$
+
+
+Substituting the observed values:
+
+$$|A_v| = \frac{\text{0.066V}}{19.33\text{mV}} = 3.41\text{ V/V}$$
+
+
+In decibels (dB):
+
+$$A_v(dB) = 20 \log_{10}(3.41) \approx 10.65\text{ dB}$$
 
 
