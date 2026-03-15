@@ -643,5 +643,16 @@ The AC analysis was performed across a frequency range of 0.1 HZ to 100GHZ.The f
 
 
 
+<img width="1918" height="851" alt="Image" src="https://github.com/user-attachments/assets/deb7b771-90da-4c60-ae43-4cfffbe11d20" />
+
+
+Bandwidth is measured at: Av(mid) − 3 dB = 10.65 − 3 = 7.65 dB fH (upper cutoff frequency) ≈ 145.41 MHz 
+
+fL (lower cutoff frequency) ≈ 0 Hz
+
+Therefore: Bandwidth (BW) ≈ 145.41 MHz.
+
+
+Unity gain Bandwidth:
 
 
