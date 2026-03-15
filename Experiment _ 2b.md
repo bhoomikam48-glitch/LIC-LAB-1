@@ -656,3 +656,45 @@ Therefore: Bandwidth (BW) ≈ 145.41 MHz.
 Unity gain Bandwidth:
 
 
+<img width="1911" height="881" alt="Image" src="https://github.com/user-attachments/assets/d063dda5-be25-4ab3-a797-ff54c4b69674" />
+
+
+From AC analysis plot At frequency ≈ 469.31 MHz
+
+Magnitude ≈ -1.83mdB at 0 dB
+
+Therefore, UGB ≈ 469.31 MHz
+
+
+$$A_{v,linear} = 10^{\left( \frac{10.65}{20} \right)}$$
+
+
+$$A_{v,linear} = \approx \mathbf{3.40 \text{ V/V}}$$
+
+
+The UGB is the product of the Gain ($A_{v,linear}$) and the Bandwidth ($BW$):
+
+
+$$UGB = 3.40 \times 145.41 \text{ MHz}$$
+
+
+$$UGB \approx \mathbf{494.39 \text{ MHz}}$$
+
+
+From simulation analysis: UGB ≈ 469.31 MHz
+
+From Gain–Bandwidth product: UGB ≈ 494.39 MHz
+
+Thus Gain bandwidth product , practically and theoretically are verified and validated.
+
+
+
+# Final Conclusion:
+
+
+* Biasing & Stability: The circuit maintains all transistors in the saturation region, ensuring a stable DC operating point. This stability is further reflected in the high phase margin, which ensures a reliable transient response without oscillations.
+
+* Gain-Bandwidth Trade-off: The experiment confirms the Gain-Bandwidth Product (GBW) principle. As the design was optimized for speed, the high unity-gain frequency demonstrates the topology's suitability for high-speed analog signal processing.
+
+
+* The experiment successfully validates the efficiency of the telescopic cascode topology in balancing gain and bandwidth. The close alignment between the Gain-Bandwidth Product theoretical model and simulated results proves the reliability of the design. This amplifier is capable of driving high-speed loads while maintaining linear transient response, confirming its effectiveness for analog IC applications.
