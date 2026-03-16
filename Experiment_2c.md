@@ -287,4 +287,48 @@ decreasing the width values to get ID = 200 µA , VOUT = 1.0V
 
 
 
+<img width="1882" height="795" alt="Image" src="https://github.com/user-attachments/assets/51349fd9-ce94-4527-af8e-bbe98ec782bb" />
 
+
+
+
+* Final Width values : Wn = 14.7µm (for M1) , Wn = 14µm (for M3) , Wp = 35µm (for PMOS).
+
+* After tuning width values we get ID=200µA , VOUT=1.0V which matches with theoretical and simulated analysis.
+
+
+
+### Design Evolution: MOSFET Sizing Comparison
+
+| Component | Initial Width ($W$) | Final Width ($W$) | 
+| :--- | :--- | :--- |
+| **$M_1$ (Input)** | 5.0 µm | 14.7 µm | 
+| **$M_3$ (Degeneration)** | 5.0 µm | 14.0 µm |
+| **$M_2$ (Active Load)** | 11.8 µm | 35.0 µm | 
+| **Drain Current ($I_D$)** | 70 µA | 200 µA | 
+
+
+
+
+# Transfer Analysis : (DC Sweep)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### DC Sweep Analysis (Transfer Characteristics)
+
+| Region | Input Voltage ($V_{in}$) Range | Behavior | Circuit State |
+| :--- | :--- | :--- | :--- |
+| **Cut-off** | $0.0V - 0.8V$ | $V_{out} \approx V_{DD}$ | $M_1$ is OFF; Load is open. |
+| **Transition/Linear** | $0.9V - 1.4V$ | $V_{out}$ drops sharply | High gain ($A_v$) region. |
+| **Saturation/Triode** | $1.4V - 2.0V$ | $V_{out} \approx 0.65V$ | $M_1$ is pulling current hard. |
