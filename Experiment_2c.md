@@ -314,14 +314,28 @@ decreasing the width values to get ID = 200 µA , VOUT = 1.0V
 
 
 
+<img width="1918" height="890" alt="Image" src="https://github.com/user-attachments/assets/2ca0702a-56c9-4890-a4a9-694461127bd1" />
+
+
+* Breakdown of the VTC Curve
+  
+
+ Region 1: 
+ 
+* Cut-off ($V_{in} < \approx 0.8V$)The input transistor $M_1$ is in the cut-off region (it is essentially "OFF").Because there is no current flowing through the circuit, there is no voltage drop across the PMOS load ($M_2$). Consequently, $V_{out}$ remains pulled up to the supply voltage ($V_{DD} = 2.0V$).
+
+
+
+Region 2: 
+
+* Active/Saturation Region ($\approx 0.9V < V_{in} < 1.4V$)This is the linear amplification region. As $V_{in}$ increases, $M_1$ turns on and begins conducting.The slope of this curve represents the voltage gain ($A_v = \frac{\Delta V_{out}}{\Delta V_{in}}$). Your plot shows a nice, steep decline here.The source degeneration ($M_3$) keeps this transition smooth and linear, rather than a sharp, hard switch.
 
 
 
 
+Region 3:
 
-
-
-
+* Saturation/Triode of Load ($\approx V_{in} > 1.4V$)Once $V_{in}$ passes roughly 1.4V, the output voltage levels off at approximately 0.65V.At this point, the NMOS stack is pulling as hard as it can, and the PMOS load is likely entering the triode region or hitting the voltage headroom limit of the stack. The circuit is now "saturated" at its low-level output voltage.
 
 
 
@@ -332,3 +346,18 @@ decreasing the width values to get ID = 200 µA , VOUT = 1.0V
 | **Cut-off** | $0.0V - 0.8V$ | $V_{out} \approx V_{DD}$ | $M_1$ is OFF; Load is open. |
 | **Transition/Linear** | $0.9V - 1.4V$ | $V_{out}$ drops sharply | High gain ($A_v$) region. |
 | **Saturation/Triode** | $1.4V - 2.0V$ | $V_{out} \approx 0.65V$ | $M_1$ is pulling current hard. |
+
+
+
+
+
+
+
+# Transient Analysis:
+
+
+Transient analysis in a Common Source (CS) amplifier studies how the circuit responds to time-varying signals, especially during switching (turn-on / turn-off) or sudden changes in input.
+
+
+
+
