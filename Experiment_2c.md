@@ -423,7 +423,7 @@ $$|A_v| = \frac{\text{0.35V}}{0.019\text{V}} = 18.42\text{ V/V}$$
 
 In decibels (dB):
 
-$$A_v(dB) = 20 \log_{10}(31) \approx 25.30\text{ dB}$$
+$$A_v(dB) = 20 \log_{10}(18.42) \approx 25.30\text{ dB}$$
 
 
 
