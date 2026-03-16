@@ -13,11 +13,14 @@
 * This structure provides stable biasing, higher gain, and efficient use of silicon area, making it widely used in analog VLSI design.
   
 
-  | Transistor | Type | Function                   |
-| ---------- | ---- | -------------------------- |
-| M1         | NMOS | Diode-connected transistor |
-| M2         | NMOS | Amplifying transistor      |
-| M3         | PMOS | Active load                |
+  | Transistor |  Type |    Function                 |
+
+
+|  M1         |  NMOS |  Diode-connected transistor |
+
+|  M2         |  NMOS |  Amplifying transistor      |
+
+|  M3         |  PMOS |  Active load                |
 
 
 Connections
@@ -264,5 +267,24 @@ Cox = 8.42 × 10⁻³ F/m²
 By rearranging, ID = (1/2) μn Cox (W/L) (VOV)²
 
 W = 11.8 µm , for ID= 200µA.
+
+
+
+<img width="1801" height="723" alt="Image" src="https://github.com/user-attachments/assets/b0502367-d663-447b-b329-4ab43aa1b893" />
+
+
+
+With these calculated width , we get ID=70µA , VOUT=0.90V.
+
+
+Taking the ratio of the current i.e. = 200 / 70 = 2.85 (assumed current ID = 200 , simulated ID = 70).
+
+Wn = 5 * 2.85 = 14.25 µm , Wp = 11.8 *2.85 = 33.63µm , taking reference as 14.25 µm , 33.63 µm start increasing or
+
+decreasing the width values to get ID = 200 µA , VOUT = 1.0V
+
+
+
+
 
 
