@@ -542,3 +542,127 @@ Therefore: Bandwidth (BW) ≈ 341.57 MHz.
 
 
   
+<img width="1918" height="858" alt="Image" src="https://github.com/user-attachments/assets/c8ec7d55-7da3-42b9-bb49-7f96bdb02246" />
+
+
+
+
+From AC analysis plot At frequency ≈ 7.04GHz
+
+Magnitude ≈ 16.05mdB at 0 dB
+
+Therefore, UGB ≈ 7.04GHz.
+
+
+
+$$A_{v,linear} = 10^{\left( \frac{25.30}{20} \right)}$$
+
+
+$$A_{v,linear} = \approx \mathbf{18.40 \text{ V/V}}$$
+
+
+The UGB is the product of the Gain ($A_{v,linear}$) and the Bandwidth ($BW$):
+
+
+$$UGB = 18.40 \times 341.57 \text{ MHz}$$
+
+
+$$UGB \approx \mathbf{6.28 \text{ GHz}}$$
+
+
+
+
+From simulation analysis: UGB ≈ 7.04GHz
+
+From Gain–Bandwidth product: UGB ≈ 6.28GHz
+
+Thus Gain bandwidth product , practically and theoretically are verified and validated.
+
+
+
+
+# Conclusion:
+
+* A diode-connected NMOS combined with another NMOS transistor and a PMOS active load forms an efficient biasing and amplification structure in CMOS analog circuits.
+  
+* The diode-connected device establishes a stable current reference, while the PMOS active load provides high resistance and improved voltage gain, making the circuit suitable for high-performance analog VLSI systems.
+
+
+
+
+
+
+
+
+
+
+
+# Comparative Analysis of Degeneration Techniques
+
+| Metric | Exp 2A: Resistor Load | Exp 2B: NMOS Current Source | Exp 2C: Diode-Connected NMOS |
+| :--- | :--- | :--- | :--- |
+| **Degeneration Type** | Passive Resistor (Rs = 1000 Ω) | Active NMOS Current Source | Diode-Connected NMOS |
+| **Drain Current (Id)** | ≈ 200 µA | ≈ 200 µA | ≈ 200 µA |
+| **Power Consumption** | ≈ 0.4 mW | ≈ 0.4 mW | ≈ 0.4 mW |
+| **Theoretical Gain** | 23.74 dB | 10.65  dB | 32.04 dB |
+| **Simulated Gain (Transient)** | 21.02 dB | dB | 27.97 dB |
+| **Simulated Gain (AC / Midband)** | **18.02 dB dB** | **dB** | **9 dB** |
+| **Bandwidth (fH)** | **212.875 MHz** | **** | **500 MHz** |
+| **Linearity** | Good (Passive source degeneration improves linearity) | Excellent (Current source improves bias stability) | Moderate–Good (Nonlinearity due to diode connection) |
+| **Stability** | Moderate | High | High |
+| **Primary Trade-off** | High gain but limited bandwidth | Very low gain but high stability | Very high bandwidth but reduced practical AC gain |
+
+---
+
+# Inference
+
+1. **Resistor Load Configuration (Exp 2A)**  
+   - Provides **high midband gain (28.4 dB)** close to theoretical value.  
+   - Bandwidth is limited to **37.66 MHz**, restricting high-frequency applications.  
+   - Passive degeneration improves **linearity** but reduces **frequency response**.
+
+2. **NMOS Current Source Configuration (Exp 2B)**  
+   - Shows **very low gain (~3.53 dB)** due to the **high output resistance of the NMOS current source**.  
+   - Bandwidth improves to **184.56 MHz**.  
+   - Provides **excellent bias stability and improved operating point control**.
+
+3. **Diode-Connected NMOS Configuration (Exp 2C)**  
+   - Achieves the **highest theoretical gain (32.04 dB)**.  
+   - Provides the **largest bandwidth (500 MHz)** among all configurations.  
+   - However, the **practical AC midband gain drops to ~9 dB** due to the nonlinear resistance introduced by the diode connection.
+
+---
+
+# Conclusion
+
+From the comparison of the three degeneration techniques:
+
+- **Resistor degeneration** provides the **best practical midband gain**, making it suitable for **low-frequency amplifier designs**.
+- **NMOS current source degeneration** offers **excellent bias stability and improved bandwidth**, but suffers from **very low gain**.
+- **Diode-connected NMOS degeneration** provides the **highest bandwidth and stable operating point**, making it suitable for **high-frequency analog applications**, though with reduced practical gain.
+
+Thus, the selection of degeneration technique depends on the design goal:
+
+- **High Gain → Resistor Load**
+- **High Stability → NMOS Current Source**
+- **High Bandwidth → Diode-Connected NMOS**
+
+---
+
+# Advantages Comparison
+
+## Resistor Degeneration
+- Simple circuit implementation
+- Predictable linear performance
+- Higher practical midband gain
+
+## NMOS Current Source Degeneration
+- Improved bias stability
+- Higher bandwidth than resistor degeneration
+- Less sensitive to supply variations
+
+## Diode-Connected NMOS Degeneration
+- Self-biasing capability
+- Highest bandwidth among the three configurations
+- Compact implementation for integrated circuits
+- Stable operating point|
