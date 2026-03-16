@@ -383,11 +383,11 @@ output waveform:
 
 * Input Waveform ($V_{in}$):
 
-Maximum ($V_{in,max}$): $1.22\text{V}$
+Maximum ($V_{in,max}$): $1.229\text{V}$
 
-Minimum ($V_{in,min}$): $1.21\text{V}$
+Minimum ($V_{in,min}$): $1.210\text{V}$
 
-Peak-to-Peak ($V_{pp,in}$): $1.22\text{V} - 1.21\text{V} = 0.01\text{V}$
+Peak-to-Peak ($V_{pp,in}$): $1.229\text{V} - 1.210\text{V} = 0.019\text{V}$
 
 
 
@@ -395,11 +395,11 @@ Peak-to-Peak ($V_{pp,in}$): $1.22\text{V} - 1.21\text{V} = 0.01\text{V}$
 
 * Output Waveform ($V_{out}$):
 
-Maximum ($V_{out,max}$): $\approx 1.26\text{V}$
+Maximum ($V_{out,max}$): $\approx 1.261\text{V}$
 
-Minimum ($V_{out,min}$): $\approx 906.80\text{mV}$
+Minimum ($V_{out,min}$): $\approx 906.73\text{mV}$
 
-Peak-to-Peak ($V_{pp,out}$): $1.26\text{V} - 906.80\text{mV} = 0.31\text{V}$
+Peak-to-Peak ($V_{pp,out}$): $1.26\text{V} - 906.80\text{mV} = 0.35\text{V}$
 
 
 Phase: Note that the output is 180° out of phase with the input (when $V_{in}$ goes up, $V_{out}$ goes down), which is characteristic of a Common-Source based amplifier.
@@ -418,12 +418,12 @@ $$|A_v| = \frac{V_{pp,out}}{V_{pp,in}}$$
 
 Substituting the observed values:
 
-$$|A_v| = \frac{\text{0.31V}}{0.01\text{V}} = 31\text{ V/V}$$
+$$|A_v| = \frac{\text{0.35V}}{0.019\text{V}} = 18.42\text{ V/V}$$
 
 
 In decibels (dB):
 
-$$A_v(dB) = 20 \log_{10}(31) \approx 29.82\text{ dB}$$
+$$A_v(dB) = 20 \log_{10}(31) \approx 25.30\text{ dB}$$
 
 
 
@@ -432,8 +432,93 @@ $$A_v(dB) = 20 \log_{10}(31) \approx 29.82\text{ dB}$$
 
 | Metric | Measured Value |
 | :--- | :--- |
-| **Input Amplitude ($V_{in,pp}$)** | 0.01V |
-| **Output Amplitude ($V_{out,pp}$)** | 0.31V |
-| **Voltage Gain ($A_v$)** | 31 V/V |
-| **Gain (dB)** | 29.82 dB |
+| **Input Amplitude ($V_{in,pp}$)** | 0.019V |
+| **Output Amplitude ($V_{out,pp}$)** | 0.35V |
+| **Voltage Gain ($A_v$)** | 18.42 V/V |
+| **Gain (dB)** | 25.30 dB |
 | **Phase Shift** | 180° |
+
+
+
+* Theoretical gain:
+
+
+$$
+A_v = \frac{-g_{m1} r_{o2}}{1 + \frac{g_{m1}}{g_{m3}}}
+$$
+
+  gm1 = gm3 = (2ID / VOV)
+  
+   gm = (2 × 200×10⁻⁶) / 0.25
+  
+ gm = 1.6 × 10⁻³ S
+
+
+ro2 = 1 / (λ ID)
+
+ro2 = 1 / (0.1 × 200×10⁻⁶)
+
+ro2 = 50 kΩ
+
+
+
+
+$$
+A_v = \frac{-  1.6 × 10⁻³  50 kΩ }}{1 + \frac{1.6 × 10⁻³}}{1.6 × 10⁻³}}
+$$
+
+
+A_v = -40 V/V.
+
+
+* In decibels (dB):
+
+$$A_v(dB) = 20 \log_{10}(40) \approx 32.04\text{ dB}$$
+
+
+
+### Theoretical vs. Practical Gain Comparison
+
+| Metric | Theoretical Value | Practical Value (Sim) |
+| :--- | :--- | :--- | :--- |
+| **Gain ($A_v$)** | 40.0 V/V | 18.4 V/V | 
+| **Gain (dB)** | 32.04 dB | 25.30 dB | 
+
+
+
+* The difference  between Theoretical vs. Practical Gain occurs due to:
+
+
+* Finite Output Resistance ($r_o$):
+  
+ Theoretical formulas often assume the transistor is a perfect current source (infinite output resistance). 
+ 
+ In reality, the finite $r_o$ of the transistors (due to channel length modulation) shunts your output signal,
+ 
+ effectively reducing the gain.
+
+
+
+Source Degeneration Accuracy:
+
+The actual resistance of $1/g_{m3}$ is not perfectly linear. 
+
+The interaction between the input stage and the degeneration transistor in a real simulation is more complex 
+
+than the simple $1/g_{m3}$ term used in basic theory.
+
+
+
+
+
+# AC Analysis:
+
+
+# Frequency Response Analysis:
+
+The AC analysis was performed across a frequency range of 0.1 HZ to 100GHZ.The frequency response demonstrates the bandwidth limits imposed by parasitic capacitances in the 180nm CMOS process.
+
+
+
+
+
