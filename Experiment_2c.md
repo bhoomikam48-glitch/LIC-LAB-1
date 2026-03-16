@@ -462,31 +462,36 @@ ro2 = 50 kΩ
 
 
 
-
 $$
-A_v = \frac{-  1.6 × 10⁻³  50 kΩ }}{1 + \frac{1.6 × 10⁻³}}{1.6 × 10⁻³}}
+A_v = \frac{-  1.6 × 10⁻³} {50 kΩ } / {1  +  \frac {1.6 × 10⁻³}{1.6 × 10⁻³}}
 $$
 
 
-A_v = -40 V/V.
+   A_v = -40 V/V.
 
 
-* In decibels (dB):
+ * In decibels (dB):
+  
 
-$$A_v(dB) = 20 \log_{10}(40) \approx 32.04\text{ dB}$$
+ $$A_v(dB) = 20 \log_{10}(40) \approx 32.04\text{ dB}$$
 
 
 
 ### Theoretical vs. Practical Gain Comparison
 
-| Metric | Theoretical Value | Practical Value (Sim) |
-| :--- | :--- | :--- | :--- |
-| **Gain ($A_v$)** | 40.0 V/V | 18.4 V/V | 
-| **Gain (dB)** | 32.04 dB | 25.30 dB | 
+
+| Metric |  Theoretical Value |  Practical Value (Sim) |
+
+| **Gain ($A_v$)** |  40.0 V/V |  18.4 V/V | 
+
+| **Gain (dB)** |  32.04 dB |  25.30 dB | 
+
 
 
 
 * The difference  between Theoretical vs. Practical Gain occurs due to:
+
+  
 
 
 * Finite Output Resistance ($r_o$):
@@ -499,7 +504,8 @@ $$A_v(dB) = 20 \log_{10}(40) \approx 32.04\text{ dB}$$
 
 
 
-Source Degeneration Accuracy:
+
+* Source Degeneration Accuracy:
 
 The actual resistance of $1/g_{m3}$ is not perfectly linear. 
 
@@ -604,10 +610,10 @@ Thus Gain bandwidth product , practically and theoretically are verified and val
 | **Degeneration Type** | Passive Resistor (Rs = 1000 Ω) | Active NMOS Current Source | Diode-Connected NMOS |
 | **Drain Current (Id)** | ≈ 200 µA | ≈ 200 µA | ≈ 200 µA |
 | **Power Consumption** | ≈ 0.4 mW | ≈ 0.4 mW | ≈ 0.4 mW |
-| **Theoretical Gain** | 23.74 dB | 10.65  dB | 32.04 dB |
-| **Simulated Gain (Transient)** | 21.02 dB | dB | 27.97 dB |
-| **Simulated Gain (AC / Midband)** | **18.02 dB dB** | **dB** | **9 dB** |
-| **Bandwidth (fH)** | **212.875 MHz** | **** | **500 MHz** |
+| **Theoretical Gain** | 23.74 dB |  6.97 dB | 32.04 dB |
+| **Simulated Gain (Transient)** | 21.02 dB | 10.65 dB | 25.30  dB |
+| **Simulated Gain (AC / Midband)** | **18.02 dB** | **7.65dB** | **22.3dB** |
+| **Bandwidth (fH)** | **212.875 MHz** | **145.41 MHz** | **341.57 MHz** |
 | **Linearity** | Good (Passive source degeneration improves linearity) | Excellent (Current source improves bias stability) | Moderate–Good (Nonlinearity due to diode connection) |
 | **Stability** | Moderate | High | High |
 | **Primary Trade-off** | High gain but limited bandwidth | Very low gain but high stability | Very high bandwidth but reduced practical AC gain |
@@ -617,19 +623,19 @@ Thus Gain bandwidth product , practically and theoretically are verified and val
 # Inference
 
 1. **Resistor Load Configuration (Exp 2A)**  
-   - Provides **high midband gain (28.4 dB)** close to theoretical value.  
-   - Bandwidth is limited to **37.66 MHz**, restricting high-frequency applications.  
+   - Provides high midband gain close to theoretical value.  
+   - Bandwidth is limited, restricting high-frequency applications.  
    - Passive degeneration improves **linearity** but reduces **frequency response**.
 
 2. **NMOS Current Source Configuration (Exp 2B)**  
-   - Shows **very low gain (~3.53 dB)** due to the **high output resistance of the NMOS current source**.  
-   - Bandwidth improves to **184.56 MHz**.  
+   - Shows **very low gain  due to the **high output resistance of the NMOS current source**.  
+   - Bandwidth improves .  
    - Provides **excellent bias stability and improved operating point control**.
 
 3. **Diode-Connected NMOS Configuration (Exp 2C)**  
-   - Achieves the **highest theoretical gain (32.04 dB)**.  
-   - Provides the **largest bandwidth (500 MHz)** among all configurations.  
-   - However, the **practical AC midband gain drops to ~9 dB** due to the nonlinear resistance introduced by the diode connection.
+   - Achieves the **highest theoretical gain .  
+   - Provides the **largest bandwidth among all configurations.  
+   - However, the **practical AC midband gain drops tdue to the nonlinear resistance introduced by the diode connection.
 
 ---
 
