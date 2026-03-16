@@ -173,13 +173,13 @@ this boost in $R_{out}$ leads to a significantly higher voltage gain without nee
  # For M1 Transistor :
    
 
-   VGS3 = VOV + VTH 
+   VGS1 = VOV + VTH 
    
   
-   VGS3  =   0.25 + 0.36
+   VGS1  =   0.25 + 0.36
    
   
-   VGS3  = 0.61V
+   VGS1  = 0.61V
    
 
 
@@ -206,7 +206,7 @@ this boost in $R_{out}$ leads to a significantly higher voltage gain without nee
   VGS1 >= VTH
   
 
-  0.91 V >= 0.36 V
+  0.61 V >= 0.36 V
   
 
 
@@ -306,7 +306,7 @@ this boost in $R_{out}$ leads to a significantly higher voltage gain without nee
 
 
 
-  1.36 V >= 0.39 V
+  0.64 V >= 0.39 V
   
 
 
