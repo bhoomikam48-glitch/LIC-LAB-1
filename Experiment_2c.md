@@ -375,3 +375,65 @@ output waveform:
 
 
 
+<img width="1918" height="887" alt="Image" src="https://github.com/user-attachments/assets/69618c2a-448f-4819-aeab-de2b94b9296e" />
+
+
+
+
+
+* Input Waveform ($V_{in}$):
+
+Maximum ($V_{in,max}$): $1.22\text{V}$
+
+Minimum ($V_{in,min}$): $1.21\text{V}$
+
+Peak-to-Peak ($V_{pp,in}$): $1.22\text{V} - 1.21\text{V} = 0.01\text{V}$
+
+
+
+
+
+* Output Waveform ($V_{out}$):
+
+Maximum ($V_{out,max}$): $\approx 1.26\text{V}$
+
+Minimum ($V_{out,min}$): $\approx 906.80\text{mV}$
+
+Peak-to-Peak ($V_{pp,out}$): $1.26\text{V} - 906.80\text{mV} = 0.31\text{V}$
+
+
+Phase: Note that the output is 180° out of phase with the input (when $V_{in}$ goes up, $V_{out}$ goes down), which is characteristic of a Common-Source based amplifier.
+
+
+
+
+
+* Voltage Gain ($A_v$) Calculation
+
+The magnitude of the voltage gain is defined as:
+
+
+$$|A_v| = \frac{V_{pp,out}}{V_{pp,in}}$$
+
+
+Substituting the observed values:
+
+$$|A_v| = \frac{\text{0.31V}}{0.01\text{V}} = 31\text{ V/V}$$
+
+
+In decibels (dB):
+
+$$A_v(dB) = 20 \log_{10}(31) \approx 29.82\text{ dB}$$
+
+
+
+
+### Transient Analysis Performance
+
+| Metric | Measured Value |
+| :--- | :--- |
+| **Input Amplitude ($V_{in,pp}$)** | 0.01V |
+| **Output Amplitude ($V_{out,pp}$)** | 0.31V |
+| **Voltage Gain ($A_v$)** | 31 V/V |
+| **Gain (dB)** | 29.82 dB |
+| **Phase Shift** | 180° |
