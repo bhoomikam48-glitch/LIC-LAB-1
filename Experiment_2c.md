@@ -361,3 +361,17 @@ Transient analysis in a Common Source (CS) amplifier studies how the circuit res
 
 
 
+input waveform:
+
+
+<img width="1918" height="852" alt="Image" src="https://github.com/user-attachments/assets/187a7f2f-b51f-4668-a7a6-176347339cc0" />
+
+
+
+
+
+
+output waveform:
+
+
+
