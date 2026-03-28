@@ -84,7 +84,40 @@ V_{id} = V_{in1} - V_{in2}
 Gain for differential input:
 
 
-A_d = \frac{V_{out}}{V_{id}}
+Av  = $$ V_{pp,out}/{V_{ind} $$
 
 
 This is the desired mode of operation.
+
+
+
+Common Mode
+
+
+$$ V_{icm} = {V_{in1}} + V_{{in2}}/{2} $$ 
+
+
+Ideally:
+
+
+A_{cm} = 0
+
+
+In practice, small nonzero gain exists due to:
+
+- Finite tail resistance
+- Mismatch
+- Channel length modulation
+
+
+
+Common Mode Rejection Ratio (CMRR):
+
+
+CMRR = {A_d} / {A_{cm}
+
+
+In dB:
+
+
+CMRR_{dB} = 20 \log \left(\frac{A_d}{A_{cm}}\right)
