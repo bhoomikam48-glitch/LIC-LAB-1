@@ -572,7 +572,7 @@ change in differential input voltage ($V_{id}$).
 
  The theoretical gain for a single-ended output is given by:
  
- When channel length modulation is considered, the single-ended voltage gain formula becomes:$$A_v = -g_m (R_D \parallel r_o)$$
+ When channel length modulation is considered, the single-ended voltage gain formula becomes $$ A_v = -g_m (R_D \parallel r_o)$$
  
  Calculate Transistor Output Resistance ($r_o$)
  
@@ -593,6 +593,9 @@ change in differential input voltage ($V_{id}$).
  
   $$|A_v| = g_m \cdot R_{L,eff} = 2.45\text{ mS} \cdot 1.98\text{ k}\Omega \approx \mathbf{4.85\text{ V/V}}$$
 
+* In decibels (dB):
+
+$$A_v(dB) = 20 \log_{10}(4.85) \approx 13.71\text{ dB}$$
 
  
 ### 2. Simulated Gain (From Waveforms)Based on the transient simulation results:
@@ -604,9 +607,12 @@ Peak Input Voltage ($V_{in,peak}$): $150\text{ mV}$
 Peak Output Voltage ($V_{out,peak}$): From the waveform V(out1)  or V(out2)  the peak is $600\text{ mV}$.
 
 
- Simulated Gain:$A_{v(sim)} = \frac{V_{out,peak}}{V_{in,peak}} = \frac{600\text{ mV}}{150\text{ mV}} = \mathbf{4\text{ V/V}}$
+ Simulated Gain: $A_{v(sim)}$ = $\frac{V_{out,peak}}{V_{in,peak}}$ = $\frac{600\text{ mV}}{150\text{ mV}}$ = $\mathbf{4\text{ V/V}}$
 
- 
+ * In decibels (dB):
+
+$$A_v(dB) = 20 \log_{10}(4.00) \approx 12.04\text{ dB}$$
+
 
 * The voltage gain of the differential amplifier was evaluated both theoretically and through transient simulation.
 
@@ -616,14 +622,131 @@ Peak Output Voltage ($V_{out,peak}$): From the waveform V(out1)  or V(out2)  the
 
 | **Transconductance ($g_m$)** | 2.45 mS |
 
-| **Theoretical Gain ($A_v$)** | 4.85 V/V |
+| **Theoretical Gain ($A_v$)** | 4.85 V/V | 13.71 dB |
 
-| **Simulated Gain ($A_{v,sim}$)** | 4.0 V/V |
+| **Simulated Gain ($A_{v,sim}$)** | 4.0 V/V | 12.04 dB |
 
 
 The remaining difference is likely due to the more complex sub-threshold and body effect parameters present in the `tsmc018.lib` BSIM models used in LTspice.
 
 
 
+# AC Analysis & Frequency Response:
 
+The AC analysis was performed to determine the high-frequency performance of the differential amplifier when loaded with a 10pF capacitor.
+
+
+
+<img width="1918" height="843" alt="image" src="https://github.com/user-attachments/assets/4f13c0f5-460b-4645-9ea4-ffd574d0271c" />
+
+Midband gain: 15.96 dB = 24.06 V/V.
+
+Bandwidth is measured at: Av(mid) − 3 dB = 15.96 − 3 = 12.96 dB
+
+fH (upper cutoff frequency) ≈ 8.05 MHz 
+
+fL (lower cutoff frequency) ≈ 0 Hz
+
+Therefore: Bandwidth (BW) ≈ 8.05 MHz.
+
+* 3dB Bandwidth (BW):
+
+Theoretical Check:
+
+$$f_{3dB} = \frac{1}{2\pi \cdot R_D \cdot C_L} = \frac{1}{2\pi \cdot 2.16\text{k}\Omega \cdot 10\text{pF}} \approx \mathbf{7.37\text{ MHz}}$$
+
+
+
+Unity gain Bandwidth:
+
+
+
+<img width="1918" height="855" alt="image" src="https://github.com/user-attachments/assets/a4fa5b97-f640-4032-ba33-187f3251ecaa" />
+
+
+
+From AC analysis plot At frequency ≈ 48.85 MHz
+
+Magnitude ≈ -6.52mdB at 0 dB
+
+Therefore, UGB ≈ 48.85 MHz
+
+
+$$A_{v,linear} = 10^{\left( \frac{15.96}{20} \right)}$$
+
+
+$$A_{v,linear} = \approx \mathbf{6.28 \text{ V/V}}$$
+
+
+The GBP is the product of the Gain ($A_{v,linear}$) and the Bandwidth ($BW$):
+
+
+$$UGB = 6.28 \times 8.05 \text{ MHz}$$
+
+
+$$UGB \approx \mathbf{50.55 \text{ MHz}}$$
+
+
+### Simulation Results Summary
+
+| Parameter | Value |
+
+| :--- | :--- |
+
+| **Mid-band Gain** | 15.96 dB (6.28 V/V) |
+
+| **3dB Bandwidth (BW)** | 8.05 MHz |
+
+| **Unity Gain Bandwidth (UGB)** | 48.85 MHz |
+
+| **Gain Bandwidth Product (GBP)** | 50.55 MHz |
+
+
+
+# Overall Inference:
+
+The experiment successfully demonstrates the design and performance trade-offs of a MOSFET Differential Amplifier in $180\text{nm}$ technology.
+
+By fixing the tail current at $0.833\text{mA}$, we achieved a stable operating point that meets the power constraint of $\le 1.5\text{mW}$.
+
+The transition from a theoretical width ($11.23\mu\text{m}$) to a simulated width ($19.90\mu\text{m}$) highlights the impact of non-ideal process parameters like channel length modulation. 
+
+Furthermore, the AC analysis confirms that the high-frequency performance is dominated by the output pole created by the $R_D C_L$ network, providing a gain of 
+
+$15.96\text{dB}$ and a bandwidth of $8.05\text{MHz}$.
+
+
+
+
+## Overall Conclusion
+
+The design and analysis of the MOS Differential Amplifier (Circuit 1) were completed successfully. The following key objectives were met:
+
+1. **DC Biasing:** The operating point was successfully fixed at $V_p = -0.7V$ and $V_{out} = 0V$, ensuring both transistors remain in the saturation region for maximum signal swing.
+   
+2. **Linearity:** Transient analysis confirmed a linear input range of approximately 480mV. Inputs exceeding this value resulted in noticeable current steering and output clipping.
+   
+3. **Frequency Response:** With a $10pF$ load, the amplifier achieved a 3dB bandwidth of 8.05 MHz and a Unity Gain Bandwidth (UGB) of 48.85 MHz.
+
+
+
+## Summary of Results
+
+The following table summarizes the design specifications and the results obtained through LTspice simulation for the 180nm CMOS Differential Amplifier.
+
+| Parameter | Theoretical / Target | Simulated Result | Observation |
+
+| :--- | :--- | :--- | :--- |
+
+| **Power Consumption** | ≤ 1.5 mW | 1.5 mW | Satisfies project requirement. |
+
+| **Operating Point ($V_p$)** | -0.7 V | -0.7004 V | Stable biasing achieved. |
+
+| **Voltage Gain** | 4.85 V/V | 4.0 V/V | Reduction due to finite output resistance ($r_o$). |
+
+| **3dB Bandwidth** | 7.37 MHz | 8.05 MHz | Pole set by $R_D$ and 10pF load. |
+
+| **Unity Gain BW (UGB)** | -- | 45.6 MHz | High-frequency limit of the amplifier. |
+
+| **Linear $V_{id}$ Range** | ± 0.48 V | ± 0.48 V | Verified through transient analysis. |
 
