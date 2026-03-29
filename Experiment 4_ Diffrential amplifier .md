@@ -637,7 +637,14 @@ The AC analysis was performed to determine the high-frequency performance of the
 
 
 
+<img width="1363" height="830" alt="image" src="https://github.com/user-attachments/assets/daf695e3-92ae-4a35-8723-3c630d3fdcf1" />
+
+
+
 <img width="1918" height="843" alt="image" src="https://github.com/user-attachments/assets/4f13c0f5-460b-4645-9ea4-ffd574d0271c" />
+
+
+
 
 Midband gain: 15.96 dB = 24.06 V/V.
 
