@@ -793,7 +793,8 @@ In this specific configuration (gates tied to a reference or ground), they provi
 
 
 
-<img width="1463" height="837" alt="image" src="https://github.com/user-attachments/assets/53d2aa7f-66fd-4e75-ae4e-54700486e9ac" />
+<img width="1383" height="803" alt="image" src="https://github.com/user-attachments/assets/a3c1c1cf-824b-499a-beb7-4e750df9f376" />
+
 
 
 
@@ -872,7 +873,7 @@ $V_{DS} > V_{OV}$ $\rightarrow$ $0.7\text{V} > 0.34\text{V}$ (Confirmed: Saturat
 
 
 
-Transistor Sizing (Width Calculation)
+* Transistor Sizing (Width Calculation)
 
 Using the drain current equation to solve for $W$:
 
@@ -891,3 +892,59 @@ $$W = \frac{2 \times 0.4165 \times 10^{-3} \times 360 \times 10^{-9}}{2.305 \tim
 
 
 $$W = 11.235 \times 10^{-6}\text{ m} = \mathbf{11.235\text{ \µm}}$$
+
+
+
+
+
+* Transistor Operating Point ($M_3, M_4$):
+
+
+The operating conditions for pmos: 
+* $V_{s} = VDD$
+* $V_G = V_D = 0V$
+* $V_{SG4,5} = V_{DD} - V_G = 0.9V$
+
+
+
+* Transistor Sizing (Width Calculation)
+
+Using the drain current equation to solve for $W$:
+
+
+
+$$I_D = \frac{1}{2} \mu_n C_{ox} \frac{W}{L} (V_{OV})^2$$
+
+
+
+
+$$W = \frac{2 \times I_D \times L}{\mu_n C_{ox} \times (V_{OV})^2}$$
+
+
+$$W = \frac{2 \times 0.4165 \times 10^{-3} \times 360 \times 10^{-9}}{9.754 \times 10^{-4} \times (0.51)^2}$$
+
+
+
+$$W = 11.82 \times 10^{-6}\text{ m} = \mathbf{11.82\text{ \µm}}$$
+
+
+* Transistor Operating Point ($M_5$):
+
+The operating conditions for M5: 
+* $V_{D} = V_P = -0.7V$
+  
+* $V_S = -0.9V$
+  
+* $V_DS=-0.7-(0.9)=0.2V$
+  
+* $V_OV=V_GS-V_TH$
+  $V_ov5 = V_B -(-0.9)-V_TH$
+  
+* For saturation $V_DS >V_OV$
+  Assuming Vov=0.17V
+  therefore $V_B=0.17-0.54$
+  $=-0.37V$
+
+
+
+  <img width="901" height="827" alt="image" src="https://github.com/user-attachments/assets/6fb237b2-30c5-4510-a5bc-5fa6050aa673" />
