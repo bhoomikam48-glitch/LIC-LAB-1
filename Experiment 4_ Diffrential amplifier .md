@@ -948,3 +948,223 @@ The operating conditions for M5:
 
 
   <img width="901" height="827" alt="image" src="https://github.com/user-attachments/assets/6fb237b2-30c5-4510-a5bc-5fa6050aa673" />
+
+
+
+
+
+# CMOS Differential Amplifier – ICMR & OCMR Analysis
+
+
+
+# 1 Input Common Mode Range (ICMR)
+
+We determine limits from saturation conditions of M5 and M1.
+
+---
+
+# Expression for Source Node (Vp)
+
+Vp = VinCM − VGS  
+
+Vp = VinCM − 0.7
+
+---
+
+##  Lower Limit of ICMR (Limited by M5 Saturation)
+
+For M5 to remain in saturation:
+
+VDS5 ≥ VOV5  
+
+VDS5 = Vp − VSS  
+
+= (VinCM − 0.7) − (−0.9)  
+
+= VinCM + 0.2  
+
+Apply saturation condition:
+
+VinCM + 0.2 ≥ 0.17  
+
+VinCM ≥ −0.03 V  
+
+## ICM(min)
+
+VinCM(min) = −0.03 V
+
+---
+
+##  Upper Limit of ICMR (Limited by M1 Saturation)
+
+For M1 saturation:
+
+VDS1 ≥ VOV1  
+
+VDS1 = Vout − Vp  
+
+At common mode, Vout = 0  
+
+VDS1 = 0 − (VinCM − 0.7)  
+
+= 0.7 − VinCM  
+
+Apply condition:
+
+0.7 − VinCM ≥ 0.34  
+
+VinCM ≤ 0.36 V  
+
+###  ICM(max)
+
+VinCM(max) = 0.36 V
+
+---
+
+#  Final ICMR
+
+ICMR = −0.03 V  to  +0.36 V
+
+---
+
+# 2 Output Common Mode Range (OCMR)
+
+---
+
+##  Upper Output Limit (Limited by PMOS Saturation)
+
+For PMOS:
+
+VSDp ≥ VOVp  
+
+VSDp = VDD − Vout  
+
+0.9 − Vout ≥ 0.51  
+
+Vout ≤ 0.39 V  
+
+---
+
+##  Lower Output Limit (Limited by NMOS Saturation)
+
+For M1:
+
+VDS1 ≥ VOV1  
+
+Vout − Vp ≥ 0.34  
+
+Since Vp = −0.7 V:
+
+Vout + 0.7 ≥ 0.34  
+
+Vout ≥ −0.36 V  
+
+---
+
+#  Final OCMR
+
+OCMR = −0.36 V  to  +0.39 V
+
+---
+
+#  Final Design Summary
+
+ICMR  = −0.03 V  to  +0.36 V  
+OCMR  = −0.36 V  to  +0.39 V  
+VoCM  = 0 V (well centered)  
+VinCM = 0 V (safe operating point)  
+
+Power Dissipation = 1.5 mW (within limit)
+
+---
+
+#  Conclusion
+
+The differential pair operates correctly in saturation within the above ICMR and OCMR ranges.
+
+The design is headroom-limited at the lower input side due to the tail transistor voltage constraint.
+
+
+## Linear and Non-Linear Region Based on √2 VOV Condition
+
+---
+
+## 1 Theory
+
+In a CMOS differential pair, linear amplification occurs only when both input transistors (M1 and M2) conduct simultaneously and share the tail current smoothly.
+
+When the differential input voltage (Vid = Vin1 − Vin2) increases, current shifts from one transistor to the other.
+
+The differential pair remains approximately linear only up to a certain input magnitude.
+
+The large-signal linearity limit is given by:
+
+|Vid| < √2 · VOV
+
+Where:
+
+VOV = Overdrive voltage of input transistor  
+VOV = VGS − VTH  
+
+If:
+
+|Vid| > √2 · VOV  
+
+Then one transistor carries almost full tail current and the other turns off → strong non-linearity (current steering region).
+
+---
+
+##  Given Design Parameters
+
+VOV = 0.34 V  
+
+---
+
+##  Boundary Calculation
+
+√2 = 1.414  
+
+√2 · VOV = 1.414 × 0.34  
+
+√2 · VOV = 0.4807 V  
+
+≈ 0.48 V  
+
+---
+
+##  Linear Region Condition
+
+|Vid| < 0.48 V  
+
+In this region:
+
+- Both M1 and M2 are ON
+- Current splits gradually
+- Small-signal model is valid
+- Voltage gain remains approximately constant
+- Low distortion operation
+
+This is the proper amplifier region.
+
+---
+
+## 2 Non-Linear Region Condition
+
+|Vid| > 0.48 V  
+
+In this region:
+
+- One transistor carries nearly full tail current
+- Other transistor approaches cutoff
+- Current steering occurs
+- Gain compresses
+- Distortion increases
+- Circuit behaves closer to a comparator
+
+---
+
+
+
+<img width="1232" height="803" alt="image" src="https://github.com/user-attachments/assets/abfb5fa8-223a-462b-b58b-ce6bc1591241" />
+
+
