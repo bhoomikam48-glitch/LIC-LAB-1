@@ -517,9 +517,9 @@ The simulation waveforms  demonstrate:
 
 1. **Phase Relationship:** The two outputs ($V_{out1}$ and $V_{out2}$) are exactly $180^\circ$ out of phase, confirming standard differential operation.
    
-3. **Signal Integrity:** The output sinusoids maintain a pure shape without clipping, verifying that the circuit is operating within the calculated linear region.
+2. **Signal Integrity:** The output sinusoids maintain a pure shape without clipping, verifying that the circuit is operating within the calculated linear region.
 
-5. **Common-Mode Stability:** The source node ($V_p$) remains stable, allowing the differential pair to steer current effectively.
+3. **Common-Mode Stability:** The source node ($V_p$) remains stable, allowing the differential pair to steer current effectively.
 
 **Conclusion:** The transient simulation validates the theoretical linear range calculations. The amplifier provides consistent gain for inputs up to approximately 480mV.
 
@@ -1165,6 +1165,48 @@ In this region:
 
 
 
+
+##  Transient Analysis: Linear Region Behavior
+
+
+- **Input 1:** SINE(0 150m 1k)
+  
+- **Input 2:** SINE(0 -150m 1k)
+  
+- **Condition Check:** $V_{id} (300mV) < \sqrt{2}V_{OV} (480mV)$
+
+
+
 <img width="1232" height="803" alt="image" src="https://github.com/user-attachments/assets/abfb5fa8-223a-462b-b58b-ce6bc1591241" />
+
+
+<img width="1918" height="858" alt="image" src="https://github.com/user-attachments/assets/bf3b6adf-6bd9-4adf-864b-7f4dbf7d907c" />
+
+
+
+The simulation waveforms  demonstrate:
+
+1. **Phase Relationship:** The two outputs ($V_{out1}$ and $V_{out2}$) are exactly $180^\circ$ out of phase, confirming standard differential operation.
+   
+2. **Signal Integrity:** The output sinusoids maintain a pure shape without clipping, verifying that the circuit is operating within the calculated linear region.
+
+
+
+
+##  Transient Analysis: Non-Linear (Clipping) Behavior
+
+### Simulation Setup
+
+To observe the limits of amplification, the differential input ($V_{id}$) was increased to **1400mV**, which exceeds the theoretical linear limit of **480mV**.
+
+- **Input Signals:** SINE(0 700m 1k) and SINE(0 -700m 1k)
+- 
+- **Constraint Check:** $V_{id} (1400mV) > \sqrt{2}V_{OV} (480mV)$
+
+
+
+<img width="1912" height="840" alt="image" src="https://github.com/user-attachments/assets/a8d84047-c1c7-4847-926e-c3ae684b28b0" />
+
+
 
 
