@@ -762,6 +762,11 @@ The following table summarizes the design specifications and the results obtaine
 
 
 
+
+
+
+
+
 ## CIRCUIT - 02 
 
 ## CMOS Differential Amplifier with PMOS Active Load and NMOS Tail Current Source.
@@ -918,7 +923,7 @@ $$I_D = \frac{1}{2} \mu_n C_{ox} \frac{W}{L} (V_{OV})^2$$
 
 
 
-$$W = \frac{2 \times I_D \times L}{\mu_n C_{ox} \times (V_{OV})^2}$$
+$$W = \frac{2 \times I_D \times L}{\mu_p C_{ox} \times (V_{OV})^2}$$
 
 
 $$W = \frac{2 \times 0.4165 \times 10^{-3} \times 360 \times 10^{-9}}{9.754 \times 10^{-4} \times (0.51)^2}$$
@@ -957,13 +962,13 @@ The operating conditions for M5:
 
 
 
-# 1 Input Common Mode Range (ICMR)
+* 1 Input Common Mode Range (ICMR)
 
 We determine limits from saturation conditions of M5 and M1.
 
 ---
 
-# Expression for Source Node (Vp)
+* Expression for Source Node (Vp)
 
 Vp = VinCM − VGS  
 
@@ -989,13 +994,13 @@ VinCM + 0.2 ≥ 0.17
 
 VinCM ≥ −0.03 V  
 
-## ICM(min)
+### ICM(min)
 
 VinCM(min) = −0.03 V
 
 ---
 
-##  Upper Limit of ICMR (Limited by M1 Saturation)
+###  Upper Limit of ICMR (Limited by M1 Saturation)
 
 For M1 saturation:
 
@@ -1021,17 +1026,17 @@ VinCM(max) = 0.36 V
 
 ---
 
-#  Final ICMR
+##  Final ICMR
 
 ICMR = −0.03 V  to  +0.36 V
 
 ---
 
-# 2 Output Common Mode Range (OCMR)
+## 2 Output Common Mode Range (OCMR)
 
 ---
 
-##  Upper Output Limit (Limited by PMOS Saturation)
+###  Upper Output Limit (Limited by PMOS Saturation)
 
 For PMOS:
 
@@ -1045,7 +1050,7 @@ Vout ≤ 0.39 V
 
 ---
 
-##  Lower Output Limit (Limited by NMOS Saturation)
+###  Lower Output Limit (Limited by NMOS Saturation)
 
 For M1:
 
@@ -1067,7 +1072,7 @@ OCMR = −0.36 V  to  +0.39 V
 
 ---
 
-#  Final Design Summary
+##  Final Design Summary
 
 ICMR  = −0.03 V  to  +0.36 V  
 OCMR  = −0.36 V  to  +0.39 V  
@@ -1078,18 +1083,21 @@ Power Dissipation = 1.5 mW (within limit)
 
 ---
 
-#  Conclusion
+###  Conclusion
 
 The differential pair operates correctly in saturation within the above ICMR and OCMR ranges.
 
 The design is headroom-limited at the lower input side due to the tail transistor voltage constraint.
 
 
-## Linear and Non-Linear Region Based on √2 VOV Condition
+
+
+
+### Linear and Non-Linear Region Based on √2 VOV Condition
 
 ---
 
-## 1 Theory
+
 
 In a CMOS differential pair, linear amplification occurs only when both input transistors (M1 and M2) conduct simultaneously and share the tail current smoothly.
 
@@ -1114,7 +1122,7 @@ Then one transistor carries almost full tail current and the other turns off →
 
 ---
 
-##  Given Design Parameters
+###  Given Design Parameters
 
 VOV = 0.34 V  
 
@@ -1132,7 +1140,7 @@ VOV = 0.34 V
 
 ---
 
-##  Linear Region Condition
+###  Linear Region Condition
 
 |Vid| < 0.48 V  
 
@@ -1148,7 +1156,7 @@ This is the proper amplifier region.
 
 ---
 
-## 2 Non-Linear Region Condition
+###  Non-Linear Region Condition
 
 |Vid| > 0.48 V  
 
@@ -1166,7 +1174,7 @@ In this region:
 
 
 
-##  Transient Analysis: Linear Region Behavior
+###  Transient Analysis: Linear Region Behavior
 
 
 - **Input 1:** SINE(0 150m 1k)
@@ -1193,7 +1201,7 @@ The simulation waveforms  demonstrate:
 
 
 
-##  Transient Analysis: Non-Linear (Clipping) Behavior
+###  Transient Analysis: Non-Linear (Clipping) Behavior
 
 ### Simulation Setup
 
@@ -1207,6 +1215,124 @@ To observe the limits of amplification, the differential input ($V_{id}$) was in
 
 <img width="1912" height="840" alt="image" src="https://github.com/user-attachments/assets/a8d84047-c1c7-4847-926e-c3ae684b28b0" />
 
+
+
+
+### Gain analysis:
+
+
+
+* simulated value:
+
+
+
+<img width="1882" height="876" alt="image" src="https://github.com/user-attachments/assets/6b45a202-6f23-40f3-a6d9-2303f00947d9" />
+
+
+
+Peak Input Voltage ($V_{in,peak}$): $150\text{ mV}$
+
+
+Peak Output Voltage ($V_{out,peak}$): From the waveform V(out1)  or V(out2)  the peak is $326.41\text{ mV}$.
+
+
+ Simulated Gain: $A_{v(sim)}$ = $\frac{V_{out,peak}}{V_{in,peak}}$ = $\frac{326.41\text{ mV}}{150\text{ mV}}$ = $\mathbf{2.17\text{ V/V}}$
+
+ * In decibels (dB):
+
+$$A_v(dB) = 20 \log_{10}(2.17) \approx 6.72\text{ dB}$$
+
+
+
+
+* Theoretical analysis:
+
+
+### Transconductance
+
+gₘ = 2I_D / V_OV  
+gₘ = (2 × 0.416 mA) / 0.340 V = 2.44 mS  
+
+
+###  Output Resistance
+
+ro1 (NMOS M1):  
+ro1 = 1 / (λn × ID)  
+ro1 = 1 / (0.1 × 0.416 mA) = 24.0 kΩ  
+
+ro4 (PMOS M4):  
+ro4 = 1 / (λp × ID)  
+ro4 = 1 / (0.1 × 0.416 mA) = 24.0 kΩ  
+
+Rout:  
+Rout = ro1 || ro4  
+Rout = (24.0 × 24.0) / (24.0 + 24.0) kΩ = 12.0 kΩ  
+
+### Differential Voltage Gain
+
+A_d = gₘ × R_out  
+A_d = 2.44 × 10⁻³ × 12 ×10³= 29.2 V/V ≈ 29.3dB
+
+
+The remaining difference is likely due to the more complex sub-threshold and body effect parameters present in the `tsmc018.lib` BSIM models used in LTspice.
+
+
+
+## AC analysis and Frequency response:
+
+The AC analysis was performed to determine the high-frequency performance of the differential amplifier when loaded with a 10pF capacitor.
+
+
+<img width="1222" height="856" alt="image" src="https://github.com/user-attachments/assets/7a88245b-5d4b-4570-bf1c-b6c3242d1849" />
+
+
+<img width="1918" height="887" alt="image" src="https://github.com/user-attachments/assets/fe5e3da8-e164-4bd6-bbb8-794529964e63" />
+
+
+
+
+Midband gain: 5.40 dB = 1.86 V/V.
+
+Bandwidth is measured at: Av(mid) − 3 dB = 5.40 − 3 = 2.4 dB
+
+fH (upper cutoff frequency) ≈ 28.08 MHz 
+
+fL (lower cutoff frequency) ≈ 0 Hz
+
+Therefore: Bandwidth (BW) ≈ 28.08 MHz.
+
+
+
+
+
+
+### Unity gain bandwidth:
+
+
+<img width="1913" height="877" alt="image" src="https://github.com/user-attachments/assets/40a26b8d-0fea-4eb8-9160-f8bc5deaee8e" />
+
+
+
+From AC analysis plot At frequency ≈ 43.60 MHz
+
+Magnitude ≈ 32.52mdB at 0 dB
+
+Therefore, UGB ≈ 43.60 MHz
+
+
+$$A_{v,linear} = 10^{\left( \frac{5.40}{20} \right)}$$
+
+
+$$A_{v,linear} = \approx \mathbf{1.86 \text{ V/V}}$$
+
+
+The GBP is the product of the Gain ($A_{v,linear}$) and the Bandwidth ($BW$):
+
+
+$$UGB = 1.86 \times 28.08 \text{ MHz}$$
+
+
+$$UGB \approx \mathbf{52.22 \text{ MHz}}$$
 
 
 
