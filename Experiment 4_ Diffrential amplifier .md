@@ -1336,3 +1336,234 @@ $$UGB \approx \mathbf{52.22 \text{ MHz}}$$
 
 
 
+
+
+
+
+
+
+#  Inference
+
+From the analysis and simulation, the following inferences are made:
+
+• The circuit satisfies the power constraint requirement.  
+• All MOSFETs operate in saturation under bias condition.  
+• The input signal range lies within the calculated large-signal linear limit.  
+• The output signals are equal in magnitude and 180° out of phase, confirming proper differential action.  
+• No current steering or cutoff behavior was observed for the applied input amplitude.  
+
+Although the theoretical small-signal gain (gm·ro) is much higher, the practical gain obtained from transient analysis is lower due to:
+
+• Finite output resistance  
+• Channel length modulation  
+• Practical load effects  
+• Limited intrinsic gain in short-channel devices  
+
+This shows that real CMOS amplifiers often provide lower gain than ideal theoretical calculations.
+
+---
+
+### Overall Performance Summary
+
+Supply Voltage = 1.8 V  
+Power Consumption ≤ 1.5 mW  
+Operating Region = Saturation  
+Linear Differential Range ≈ ±0.48 V  
+Measured Gain ≈ 1.86 V/V  
+Frequency Tested = 1 kHz  
+
+The circuit behaves as a proper low-voltage CMOS differential amplifier suitable for low-power analog applications.
+
+---
+
+
+
+
+
+
+
+
+
+# CIRCUIT - 03 
+
+
+
+
+# CMOS Differential Amplifier with Current Mirror Active Load
+
+
+
+
+
+<img width="1056" height="876" alt="image" src="https://github.com/user-attachments/assets/f79c9382-9513-41ac-ace2-b3bca883f836" />
+
+
+* Given parameters:
+  
+
+SpecificationsTechnology Channel Length ($L$): $360\text{ nm}$
+
+Supply Voltage ($V_{DD}$): $0.9\text{V}$
+
+Negative Supply ($V_{SS}$): $-0.9\text{V}$
+
+Total Voltage Swing ($V_{total}$): $1.8\text{V}$ ($0.9\text{V} - (-0.9\text{V})$
+
+Power Dissipation Limit ($P$): $\le 1.5\text{mW}$ (Using $1.5\text{mW}$ for design)$
+
+Required Input Common Mode ($V_{inCM}$): $0\text{V}$
+
+Target Output Common Mode ($V_{outCM}$): $0\text{V}$
+
+Common Source Node Voltage ($V_p$): $-0.7\text{V}$
+
+Process Parameter ($\mu_n C_{ox}$): $2.305 \times 10^{-4}\text{ A/V}^2$
+
+Threshold Voltage ($V_T$): $0.36\text{V}$
+
+
+
+
+
+** Determine Tail Current ($I_{SS}$)
+
+
+To satisfy the power constraint:
+
+
+
+$$I_{SS} \le \frac{P_{limit}}{V_{total}} = \frac{1.5\text{ mW}}{1.8\text{ V}} \approx 0.833\text{ mA}$$
+
+
+$I_{SS} = \mathbf{0.833\text{ mA}}$
+
+
+
+
+For a balanced common-mode input:
+
+
+$$I_{D1} = I_{D2} = \frac{I_{SS}}{2} = \frac{0.833\text{ mA}}{2} = \mathbf{0.4165\text{ mA}}$$
+
+
+
+
+
+
+
+Given $V_{inCM} = V_G = 0\text{V}$ and $V_p = V_S = -0.7\text{V}$:
+
+
+
+$$V_{GS} = V_G - V_S = 0 - (-0.7) = \mathbf{0.7\text{ V}}$$
+
+
+$$V_{OV} \text{ (Overdrive Voltage)} = V_{GS} - V_T = 0.7 - 0.36 = \mathbf{0.34\text{ V}}$$
+
+
+$$V_{DS} = V_{out} - V_S = 0 - (-0.7) = \mathbf{0.7\text{ V}}$$
+
+
+
+Condition for Saturation: 
+
+
+$V_{DS} > V_{OV}$ $\rightarrow$ $0.7\text{V} > 0.34\text{V}$ (Confirmed: Saturation region)
+
+
+
+* Transistor Sizing (Width Calculation)
+
+Using the drain current equation to solve for $W$:
+
+
+
+$$I_D = \frac{1}{2} \mu_n C_{ox} \frac{W}{L} (V_{OV})^2$$
+
+
+
+
+$$W = \frac{2 \times I_D \times L}{\mu_n C_{ox} \times (V_{OV})^2}$$
+
+
+$$W = \frac{2 \times 0.4165 \times 10^{-3} \times 360 \times 10^{-9}}{2.305 \times 10^{-4} \times (0.34)^2}$$
+
+
+
+$$W = 11.235 \times 10^{-6}\text{ m} = \mathbf{11.235\text{ \µm}}$$
+
+
+
+
+
+
+* Transistor Operating Point ($M_5$):
+
+The operating conditions for M5: 
+* $V_{D} = V_P = -0.7V$
+  
+* $V_S = -0.9V$
+  
+* $V_DS=-0.7-(0.9)=0.2V$
+  
+* $V_OV=V_GS-V_TH$
+  $V_ov5 = V_B -(-0.9)-V_TH$
+  
+* For saturation $V_DS >V_OV$
+  Assuming Vov=0.17V
+  therefore $V_B=0.17-0.54$
+  $=-0.37V$
+
+
+
+* Transistor Sizing (Width Calculation)
+
+
+  W = (2 × 0.833 × 10⁻³ × 360 × 10⁻⁹) / (2.365 × 10⁻⁴ × (0.17)²)
+
+W = (5.99 × 10⁻¹⁰) / (2.365 × 10⁻⁴ × 0.028)
+
+W = (5.99 × 10⁻¹⁰) / (6.622 × 10⁻⁶)
+
+W ≈ 90.45 μm
+
+
+
+
+* Transistor Operating Point ($M_3,M4$):
+
+
+
+
+Source is connected to:
+$VS = VDD = 0.9 V$
+
+Drain is at:
+$VD = Vout = 0 V$
+
+Gate is connected to bias voltage:
+$VG = Vb2$
+
+$VGS4 = Vth,p + VOV4$
+
+$VGS4 = 0.39 V + 0.21 V$
+
+$VGS4 = 0.60 V$
+
+$VB2 = VDD − VGS4$
+
+$VB2 = 0.9 V − 0.60 V$
+
+$VB2 = 0.30 V$
+
+
+
+* Transistor Sizing (Width Calculation)
+
+W = (2 × ID × L) / (μpCox × (VOV)²)
+
+W = (2 × 0.4165 × 10⁻³ × 360 × 10⁻⁹) / (9.754 × 10⁻⁴ × (0.21)²)
+
+W = 6.963× 10⁻⁶ m
+
+W = 6.963 µm
