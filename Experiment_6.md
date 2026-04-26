@@ -46,7 +46,7 @@ $$V_{out} = \left( 1 + \frac{R_f}{R_g} \right) \left[ \frac{x_2 \cdot R_6 + x_3 
  To get $y_2(t) = 2x_2(t) + 6x_3(t)$, we need to solve for the resistor values. Let's set a standard value for $R_g$ as 10 kΩ.
 
 
- Step A: 
+* Step A: 
  
  Ratio of InputsThe ratio of the coefficients is $6 / 2 = 3$.
  
@@ -59,7 +59,7 @@ $$V_{out} = \left( 1 + \frac{R_f}{R_g} \right) \left[ \frac{x_2 \cdot R_6 + x_3 
 
 
 
- Step B: Required Gain
+* Step B: Required Gain
  
  
  Now we compare our current expression to the target:
@@ -77,7 +77,7 @@ $$V_{out} = \left( 1 + \frac{R_f}{R_g} \right) \left[ \frac{x_2 \cdot R_6 + x_3 
 
 
 
- Verification
+* Verification
  
  Plugging the values back into the equation:
  
@@ -95,7 +95,7 @@ $$y_2(t) = 2 \left[ -0.5 \sin(2000\pi t) \right] + 6 \left[ 1 \right]$$
 
 
 
-$$y_2(t) = 6 - \sin(2000\pi t) \text{ Volts}$$
+* $$y_2(t) = 6 - \sin(2000\pi t) \text{ Volts}$$
 
 
 
@@ -110,17 +110,17 @@ $$y_2(t) = 6 - \sin(2000\pi t) \text{ Volts}$$
 
 
 
-The resulting signal $y_2(t)$ consists of two parts:
+### The resulting signal $y_2(t)$ consists of two parts:
 
-DC Offset (6V): The output is shifted upwards by 6V due to the constant $+1$V input at $x_3$ being amplified by a factor of 6.
+* DC Offset (6V): The output is shifted upwards by 6V due to the constant $+1$V input at $x_3$ being amplified by a factor of 6.
 
-AC Component (Sine Wave): A sine wave with a peak amplitude of 1V and a frequency of 1000 Hz ($2000\pi = 2\pi f \implies f = 1000$).
+* AC Component (Sine Wave): A sine wave with a peak amplitude of 1V and a frequency of 1000 Hz ($2000\pi = 2\pi f \implies f = 1000$).
 
 Note that the negative sign indicates a $180^\circ$ phase shift relative to a standard sine wave.
 
 
 
-In a simulation,  a sine wave oscillating between a maximum of 7V ($6 + 1$) and a minimum of 5V ($6 - 1$).
+* In a simulation,  a sine wave oscillating between a maximum of 7V ($6 + 1$) and a minimum of 5V ($6 - 1$).
 
 
 *** “The simulated output waveform matches the theoretical output of  confirming correct resistor design.” ***
@@ -140,3 +140,145 @@ In a simulation,  a sine wave oscillating between a maximum of 7V ($6 + 1$) and 
 * Digital-to-Analog Converters (DAC)
 
 * Audio Mixing Consoles
+
+
+
+
+
+
+
+# Part d) - Averaging Circuit.
+
+
+For part (d), the goal is to implement the averaging function:$$y_4(t) = \frac{x_1(t) + x_2(t) + x_3(t)}{3}$$This is a specific case of the non-inverting summing amplifier known as an Averaging Circuit.
+
+
+
+# 1. Principle & Theory
+
+
+The non-inverting averaging circuit works by exploiting the parallel combination of resistors at the non-inverting terminal. 
+
+When multiple voltage sources are connected to the same node through equal resistors, the voltage at that node is the arithmetic mean (average) of the input voltages.
+
+
+* The Voltage Divider Rule at the Non-Inverting Terminal ($V_p$):If $R_1 = R_2 = R_3 = R$, then by superposition:$$V_p = \frac{x_1 + x_2 + x_3}{3}$$
+
+
+* The Gain Stage:
+Since the target output $y_4(t)$ is exactly equal to this average, we need a circuit gain ($A_v$) of 1. This means the op-amp must act as a Voltage Follower (Buffer) for the averaged signal.
+
+
+
+
+
+# 2. Resistor Design & Analysis
+  
+* Step A:
+
+  Input Resistors ($R_1, R_2, R_3$)To ensure the node voltage is a true average, all input resistors must be identical.
+
+  Design Choice: Let $R_1 = R_2 = R_3 = 30\text{ kΩ}$
+
+
+
+
+* Step B:
+
+Feedback Network ($R_f$ and $R_4$)
+
+To achieve a gain of $A_v = 1$:
+
+$$A_v = 1 + \frac{R_f}{R_4}$$For $A_v = 1$, the ratio $\frac{R_f}{R_4}$ must be 0.
+
+
+$R_4 = 10\text{ kΩ}$ to ground. For this to work, the feedback resistor $R_f$ should be a short circuit (0 Ω).
+
+
+
+
+
+Final Resistor Values (Non-Inverting Design)
+
+Component	Value
+R1	30kΩ
+R2	30kΩ
+R3	30kΩ
+Rf	0Ω
+Rg	10kΩ
+
+
+
+
+# 3. Substitution & Waveform Analysis
+  
+  
+ Using the given values:
+ 
+* $x_1(t) = -1\text{V}$
+ 
+  * $x_2(t) = -0.5 \sin(2000\pi t)$
+ 
+ * $x_3(t) = +1\text{V}$
+
+
+
+
+
+Substitute into the expression:
+
+$$y_4(t) = \frac{-1 + (-0.5 \sin(2000\pi t)) + 1}{3}$$
+
+
+$$y_4(t) = \frac{-0.5 \sin(2000\pi t)}{3}$$
+
+
+$$y_4(t) \approx -0.166 \sin(2000\pi t) \text{ Volts}$$
+
+
+
+
+
+
+<img width="1297" height="837" alt="image" src="https://github.com/user-attachments/assets/cb1509b8-5c2f-4828-b65a-bdaaa58b22c2" />
+
+
+
+
+
+
+<img width="1891" height="917" alt="image" src="https://github.com/user-attachments/assets/1fe4e88a-67e1-45e9-9776-bafdbea333fd" />
+
+
+
+
+
+
+<img width="1917" height="920" alt="image" src="https://github.com/user-attachments/assets/6ccf04be-3b5f-4998-b4db-b33423f554b7" />
+
+
+
+
+
+
+# Simulation Observation:
+
+
+The DC components ($-1\text{V}$ and $+1\text{V}$) cancel each other out.
+
+
+The output will be a pure sine wave centered at 0V.The peak amplitude will be approximately 166 mV.
+
+
+*** “The simulated output waveform matches the theoretical output of  confirming correct resistor design.” ***
+
+
+
+
+
+# Applications:
+
+
+Sensor Averaging: Combining readings from three identical sensors to reduce noise or errors from a single faulty sensor.
+
+Signal Processing: Finding the "Common Mode" signal of three different lines.
