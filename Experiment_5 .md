@@ -217,6 +217,16 @@ $$R_f = 0$ (short circuit)$R_1 = \infty$ (open circuit)Therefore, $A_v = 1 + (0 
 
 
 
+
+<img width="1508" height="830" alt="image" src="https://github.com/user-attachments/assets/6f2a5796-db27-4f5f-824a-8e78c063dc54" />
+
+
+
+
+
+
+
+
 # Transient analysis:
 
 
