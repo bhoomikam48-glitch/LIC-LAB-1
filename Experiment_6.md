@@ -9,7 +9,16 @@
 
 
 
+
+
+
+
+
+# Part b) - $$y_2(t) = 2x_2(t) + 6x_3(t)$$
+
+
 To design the circuit for part (b), we need to implement the transfer function:$$y_2(t) = 2x_2(t) + 6x_3(t)$$
+
 
 Since both coefficients are positive, a Non-Inverting Summing Amplifier is the ideal choice.
 
@@ -17,7 +26,7 @@ Since both coefficients are positive, a Non-Inverting Summing Amplifier is the i
 
 
 
-1. Principle & Theory
+# 1. Principle & Theory
   
   
 * The non-inverting summer works in two stages:
@@ -140,6 +149,9 @@ Note that the negative sign indicates a $180^\circ$ phase shift relative to a st
 * Digital-to-Analog Converters (DAC)
 
 * Audio Mixing Consoles
+
+
+
 
 
 
