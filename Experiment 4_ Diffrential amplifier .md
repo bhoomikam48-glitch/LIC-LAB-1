@@ -1398,6 +1398,15 @@ The circuit behaves as a proper low-voltage CMOS differential amplifier suitable
 <img width="1056" height="876" alt="image" src="https://github.com/user-attachments/assets/f79c9382-9513-41ac-ace2-b3bca883f836" />
 
 
+
+
+
+
+
+# DC Analysis:
+
+
+
 * Given parameters:
   
 
@@ -1567,3 +1576,478 @@ W = (2 × 0.4165 × 10⁻³ × 360 × 10⁻⁹) / (9.754 × 10⁻⁴ × (0.21)²
 W = 6.963× 10⁻⁶ m
 
 W = 6.963 µm
+
+
+
+##  Final Width Values
+
+| Transistor | Type  | Width (W) | Length (L) | W/L Ratio |
+|------------|--------|------------|------------|-----------|
+| M1         | NMOS   | 20.1 µm    | 0.36 µm    | 55.83     |
+| M2         | NMOS   | 20.1 µm    | 0.36 µm    | 55.83     |
+| M3         | PMOS   | 175 µm     | 0.36 µm    | 486.11    |
+| M4         | PMOS   | 175 µm     | 0.36 µm    | 486.11    |
+| M5         | NMOS   | 378.5 µm   | 0.36 µm    | 1051.39   |
+
+
+
+<img width="1830" height="845" alt="image" src="https://github.com/user-attachments/assets/e84bbd30-26aa-46d4-86ba-f92251f932a6" />
+
+
+
+
+
+### CMOS Differential Amplifier – ICMR & OCMR Analysis
+
+
+
+* Minimum Input Common Mode Voltage
+
+
+
+For proper operation, the NMOS transistors must remain ON:
+
+Condition:
+
+
+
+
+$VGS ≥ VT$
+
+
+
+$VGS = VICM − VS$
+
+So,
+
+$VICM(min) = VS + VT$
+
+Substituting values:
+
+$VS = -0.7 V$
+
+$VT = 0.36 V$
+
+$VICM(min) = -0.7 + 0.36$
+
+$VICM(min) = -0.34 V$
+
+
+
+
+
+
+* Maximum Input Common Mode Voltage
+
+To keep the transistors in saturation:
+
+Condition:
+
+$$VDS ≥ VOV$$
+
+Given:
+
+$$VD = 0 V$$
+
+$$VS = -0.7 V$$
+
+$$VDS = VD − VS$$
+
+$$VDS = 0 − (−0.7)$$
+
+$$VDS= 0.7 V$$
+
+$$VOV = 0.7V$$
+
+$$VOV = VGS − VT$$
+
+$$VGS = VICM − VS$$
+
+
+$$VOV = (VICM − VS) − VT$$
+
+Substituting:
+
+$$0.7 = (VICM + 0.7) − 0.36$$
+
+$$0.7 = VICM + 0.34$$
+
+$$VICM(max) = 0.36 V$$
+
+Final Range:
+
+$$-0.34 V ≤ VICM ≤ 0.36 V$$
+
+
+
+
+
+### Output Common Mode Range (OCMR):
+
+
+
+* Minimum Output Common Mode Voltage
+
+
+
+For minimum output voltage, the NMOS input transistors (M1 and M2) must remain in saturation.
+
+Condition:
+
+$$VDS1 ≥ VOV$$
+
+Using:
+
+$VDS1 = Vout − VS$
+
+So,
+
+$Vout(min) − VS ≥ VOV$
+
+$Vout(min) ≥ VS + VOV$
+
+Substituting:
+
+$VS = -0.7 V$
+
+$VOV = 0.34 V$
+
+$Vout(min) = -0.7 + 0.34$
+
+$Vout(min) = -0.36 V$
+
+
+
+* Maximum Output Common Mode Voltage
+
+For maximum output voltage, the PMOS load transistors (M3 and M4) must remain in saturation.
+
+Condition:
+
+$VSD ≥ VSG − |VT|$
+
+Using:
+
+$VSD = VDD − Vout$
+
+Also,
+
+$VSG = VDD − Vb2$
+
+So,
+
+$VDD − Vout(max) ≥ (VDD − Vb2) − |VT|$
+
+Rearranging:
+
+$Vout(max) ≤ Vb2 + |VT|$
+
+Substituting:
+
+$Vb2 = 0.30 V$
+
+$|VT| = 0.39 V$
+
+$Vout(max) = 0.30 + 0.39$
+
+$Vout(max) = 0.69 V$
+
+Final Output Common Mode Range:
+
+$-0.36 V ≤ Vout ≤ 0.69 V$
+
+
+
+
+
+
+
+
+### Linear and Non-Linear Region Based on √2 VOV Condition
+
+---
+
+
+
+In a CMOS differential pair, linear amplification occurs only when both input transistors (M1 and M2) conduct simultaneously and share the tail current smoothly.
+
+When the differential input voltage (Vid = Vin1 − Vin2) increases, current shifts from one transistor to the other.
+
+The differential pair remains approximately linear only up to a certain input magnitude.
+
+The large-signal linearity limit is given by:
+
+|Vid| < √2 · VOV
+
+
+Where:
+
+VOV = Overdrive voltage of input transistor  
+VOV = VGS − VTH  
+
+If:
+
+|Vid| > √2 · VOV  
+
+Then one transistor carries almost full tail current and the other turns off → strong non-linearity (current steering region).
+
+
+
+
+
+###  Given Design Parameters
+
+VOV = 0.34 V  
+
+---
+
+##  Boundary Calculation
+
+√2 = 1.414  
+
+√2 · VOV = 1.414 × 0.34  
+
+√2 · VOV = 0.4807 V  
+
+≈ 0.48 V  
+
+---
+
+###  Linear Region Condition
+
+|Vid| < 0.48 V  
+
+In this region:
+
+- Both M1 and M2 are ON
+- Current splits gradually
+- Small-signal model is valid
+- Voltage gain remains approximately constant
+- Low distortion operation
+
+This is the proper amplifier region.
+
+---
+
+###  Non-Linear Region Condition
+
+|Vid| > 0.48 V  
+
+In this region:
+
+- One transistor carries nearly full tail current
+- Other transistor approaches cutoff
+- Current steering occurs
+- Gain compresses
+- Distortion increases
+- Circuit behaves closer to a comparator
+
+---
+
+
+
+###  Transient Analysis: Linear Region Behavior
+
+
+- **Input 1:** SINE(0 10m 1k)
+  
+- **Input 2:** SINE(0 -10m 1k)
+  
+- **Condition Check:** $V_{id} (20mV) < \sqrt{2}V_{OV} (480mV)$
+
+
+
+
+<img width="1911" height="871" alt="image" src="https://github.com/user-attachments/assets/102e6677-57e7-4c11-858e-d18a94501924" />
+
+
+
+
+
+### Transient Analysis: Non-Linear (Clipping) Behavior
+
+ Simulation Setup
+
+To observe the limits of amplification, the differential input ($V_{id}$) was increased to **1400mV**, which exceeds the theoretical linear limit of **480mV**.
+
+- **Input Signals:** SINE(0 700m 1k) and SINE(0 -700m 1k)
+- 
+- **Constraint Check:** $V_{id} (1400mV) > \sqrt{2}V_{OV} (480mV)$
+
+
+
+<img width="1912" height="915" alt="image" src="https://github.com/user-attachments/assets/b6c2cdc3-ce67-4aaf-b0f8-d75802212da0" />
+
+
+
+
+
+
+ # Theoretical Gain
+
+Assume channel length modulation:
+
+$λ = 0.1 V⁻¹$
+
+* Output Resistance
+
+The output resistance of each MOSFET is:
+
+$ro = 1 / (λ × ID)$
+
+Substituting values:
+
+$ID = 0.416 mA = 0.416 × 10⁻³ A$
+
+$ro = 1 / (0.1 × 0.416 × 10⁻³)$
+
+$ro = 24 kΩ$
+
+* Effective Output Resistance
+
+Since two transistors are present:
+
+$ro_eff = ron || rop$
+
+$ro_eff = 24 kΩ || 24 kΩ$
+
+$ro_eff = 12 kΩ$
+
+* Transconductance
+
+$gm = (2 × ID) / VOV$
+
+$gm = (2 × 0.416 × 10⁻³) / 0.24$
+
+$gm ≈ 3.46 mS$
+
+* Differential Gain
+
+$Ad = gm × Rout$
+
+$Ad = 3.46 × 10⁻³ × 12 × 10³$
+
+$Ad ≈ 41.52$
+
+
+
+* Gain in dB
+
+$Ad(dB) = 20 log10(Ad)$
+
+$Ad(dB) = 20 log10(41.52)$
+
+$Ad(dB) ≈ 32.36 dB$
+
+
+
+
+
+### simulated value:
+
+
+
+<img width="1912" height="850" alt="image" src="https://github.com/user-attachments/assets/dab9b6c2-a9f7-46dd-9ab9-379959b4acf8" />
+
+
+
+
+
+Peak Input Voltage ($V_{in,peak}$): $10\text{ mV}$
+
+
+Peak Output Voltage ($V_{out,peak}$): From the waveform V(out1)  or V(out2)  the peak is $810.37\text{ mV}$.
+
+
+Simulated Gain: $A_{v(sim)}$ = $\frac{V_{out,peak}}{V_{in,peak}}$ = $\frac{810.37\text{ mV}}{10\text{ mV}}$ = $\mathbf{81.03\text{ V/V}}$
+
+
+ * In decibels (dB):
+
+$$A_v(dB) = 20 \log_{10}(81.03) \approx 38.17\text{ dB}$$
+
+
+
+
+
+Reason for Difference Between Theoretical and Simulated Gain
+
+
+A large deviation is observed between theoretical and simulated gain due to practical non-idealities.
+
+
+
+Major Reasons
+
+
+* Channel Length Modulation
+
+
+* Mobility Degradation
+
+* Parasitic Capacitances
+
+* Large Signal Operation
+
+* Mismatch and Device Modeling
+
+
+
+
+
+## AC analysis and Frequency response:
+
+
+
+<img width="1327" height="570" alt="image" src="https://github.com/user-attachments/assets/e6058c52-5497-4bca-a5fa-dd8e78f6551f" />
+
+
+
+
+Midband Gain= 37.006
+
+Bandwidth (frequency at (Gain -3dB))= 1.44 MHz
+
+Unity Gain Bandwidth =98.47 MHz
+
+ Gain-Bandwidth Product:   $GBW = A_v \times f_{-3dB}$
+
+ $GBW = 1.44  MHz\times 70.79\text{ GHz} =101.93 \text{ MHz}$
+
+
+  
+### Conclusion:
+
+Active load significantly increases gain
+
+Differential output removes DC offset
+
+Linear region gives accurate amplification
+
+Nonlinear region shows switching behavior
+
+High gain due to large output resistance
+
+Asymmetrical clipping due to PMOS limitations
+
+AC response confirms amplifier behavior
+
+
+
+
+
+#  Comparison of Differential Amplifier Configurations
+
+| Parameter | Resistive Load Differential Amplifier | Diode-Connected Load Differential Amplifier | PMOS Active Load Differential Amplifier |
+|----------|----------------------------------------|--------------------------------------------|----------------------------------------|
+| **Load Type** | Passive resistor (RD) | NMOS diode-connected transistor | PMOS current mirror (active load) |
+| **Gain (Av)** | Low to moderate (~10–15 dB) | Moderate (~15–25 dB) | High (~30–50 dB) |
+| **Output Resistance** | Low (≈ RD) | Moderate (≈ 1/gm) | High (≈ ro || ro) |
+| **Voltage Gain Expression** | Av ≈ gm × RD | Av ≈ gm / gmd (limited) | Av ≈ gm × (ro || ro) |
+| **Power Consumption** | Higher (due to resistor drop) | Moderate | Lower / Efficient |
+| **Linearity** | Good | Moderate | Moderate |
+| **Output Swing** | Large (limited by VDD only) | Limited (due to diode drop) | Limited (due to VOV constraints) |
+| **Symmetry** | Good | Slightly asymmetric | More asymmetric |
+| **Bandwidth** | High (less parasitics) | Moderate | Lower (due to parasitic capacitances) |
+| **Complexity** | Simple | Moderate | More complex |
+
